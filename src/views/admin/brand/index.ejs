@@ -1,0 +1,41 @@
+<div class="container mt-2">
+    <div class="flex items-center justify-end">
+        <a class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 
+        font-medium rounded-md text-sm px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 
+        dark:focus:ring-blue-800 h-10 flex items-center justify-center" href="/admin/brand/create">Add</a>
+    </div>
+    <div class="container-table mx-2">
+        <table class="table table-striped table-hover data-table" style="max-width: 1300px;">
+            <thead style="background-color: #07497c; color: white;">
+                <tr>
+                    <th class="text-center" colspan="4">Brand manager</th>
+                </tr>
+                <tr>        
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Description</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% brands.forEach(brand => { %>
+                    <tr>
+                        <td><%= brand.name %></td>
+                        <td><%= brand.location %></td>
+                        <td><%= brand.description %></td>
+                        <td>
+                            <div class="flex justify-center items-center gap-2">
+                                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 
+                                font-medium rounded-full text-sm px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 
+                                dark:focus:ring-blue-800">Edit</button>
+                                <button class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 
+                                font-medium rounded-full text-sm px-4 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 
+                                dark:focus:ring-red-900">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>

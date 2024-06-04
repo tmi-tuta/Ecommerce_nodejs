@@ -1,0 +1,30 @@
+<div class="container mt-2">
+    <div class="flex items-center justify-start">
+        <a class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 
+        font-medium rounded-md text-sm px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 
+        dark:focus:ring-blue-800 h-10 flex items-center justify-center" href="/admin/brand">Back</a>
+    </div>
+    <div>
+        <form action="/admin/brand/store" method="POST">
+            <div class="w-50 m-auto">  
+                <div class="pb-2">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
+                    <input type="text" name="name"class="form-control" id="name" required>
+                </div>
+                <div class="pb-2">
+                    <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
+                    <input type="text" name="location" class="form-control" id="location">
+                </div>
+                <div class="pb-2">
+                    <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                    <textarea class="form-control" name="description" id="description"></textarea>
+                </div>
+                <div class="flex justify-center items-center">
+                    <button class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 
+                    font-medium rounded-md text-sm px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 
+                    dark:focus:ring-blue-800 h-10 flex items-center justify-center" type="submit">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>  

@@ -1,0 +1,14 @@
+.icon-bars {
+    color: black;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.item-menu.active {
+    background-color: grey;
+    color: white;
+}
+
+.header-block {
+    
+}
