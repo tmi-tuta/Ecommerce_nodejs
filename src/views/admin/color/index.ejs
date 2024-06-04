@@ -8,10 +8,11 @@
         <table class="table table-striped table-hover data-table" style="max-width: 1300px;">
             <thead style="background-color: #07497c; color: white;">
                 <tr>
-                    <th class="text-center" colspan="3">Color manager</th>
+                    <th class="text-center" colspan="4">Color manager</th>
                 </tr>
                 <tr>        
                     <th>Name</th>
+                    <th>Color</th>
                     <th>Description</th>
                     <th class="text-center">Action</th>
                 </tr>
@@ -20,6 +21,7 @@
                 <% colors.forEach(color => { %>
                     <tr>
                         <td><%= color.name %></td>
+                        <td><%= color.color %></td>
                         <td><%= color.description %></td>
                         <td>
                             <div class="flex justify-center items-center gap-2">
