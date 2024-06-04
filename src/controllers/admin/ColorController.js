@@ -16,7 +16,7 @@ const create = (req,res) => {
 
 const store = async(req, res) => {
     try {
-        const { name, description } = req.body;
+        const { name, color, description } = req.body;
         if (!name) {
             return res.status(200).json({
                 status: 'ERR',
@@ -25,6 +25,7 @@ const store = async(req, res) => {
         }
         const createColor = await Color.create({
             name: name,
+            color: color,
             description: description
         });
         res.redirect('/admin/color');
