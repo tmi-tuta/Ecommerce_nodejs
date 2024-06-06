@@ -8,6 +8,7 @@ const StaffController = require('../controllers/admin/StaffController');
 const TypeController = require('../controllers/admin/TypeController');
 const BrandController = require('../controllers/admin/BrandController');
 const ColorController = require('../controllers/admin/ColorController');
+const ProductController = require('../controllers/admin/ProductController');
 const passport = require('passport');
 
 router.get('/', HomeController.index);
@@ -44,6 +45,8 @@ router.post('/brand/store', BrandController.store);
 router.get('/color', ColorController.index);
 router.get('/color/create', ColorController.create);
 router.post('/color/store', ColorController.store);
+
+router.get('/product', ProductController.index);
 
 module.exports = router
 
