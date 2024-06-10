@@ -1,0 +1,40 @@
+<div class="font-sans bg-white">
+  <div class="p-6 lg:max-w-7xl max-w-4xl mx-auto">
+    <div class="grid items-start grid-cols-1 lg:grid-cols-5 gap-12 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] p-6">
+      <div class="lg:col-span-3 w-full lg:sticky top-0 text-center">
+
+        <div class="px-4 py-10 rounded-xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative">
+          <div class="div-image flex items-center justify-center rounded" style="background-color: #dfdfdf;"> 
+            <img src="<%= product.image.replace('src/', '') %>" alt="Product" class="w-4/5 rounded object-cover" />
+          </div>
+        </div>
+
+        <div class="mt-6 flex flex-wrap justify-center gap-6 mx-auto">
+          <% images.forEach(subImage => { %>
+            <div class="div-image flex items-center justify-center rounded" style="background-color: #dfdfdf;">
+              <img src="<%= subImage.image.replace('src/', '') %>" alt="Product2" class="w-24 cursor-pointer rounded" />
+            </div>
+          <% }) %>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h2 class="text-2xl font-extrabold text-[#333]"><%= product.name %> | <%= product.type_id.name %></h2>
+        <div class="flex flex-wrap gap-4 mt-4">
+          <label class="text-xl" for="price">Price:</label>
+          <p class="text-[#333] text-xl" id="price">$<%= product.price %></p>
+        </div>
+        <hr>
+        <p class="text-[#333] text-2xl font-bold">Infomation</p>
+        <div class="flex flex-wrap gap-4">
+          <label class="text-xl" for="price">Type:</label>
+          <p class="text-[#333] text-xl" id="price"><%= product.type_id.name %></p>
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <label class="text-xl" for="price">Brand:</label>
+          <p class="text-[#333] text-xl" id="price"><%= product.brand_id.name %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -42,7 +42,7 @@ app.use(flash());
 app.use((req, res, next) => {
     res.locals.isLoggedIn = req.isAuthenticated();
     next();
-});
+}); 
 
 routes(app);
 

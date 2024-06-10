@@ -1,0 +1,65 @@
+<div class="container mt-2">
+    <div class="flex items-center justify-start">
+        <a class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 
+        font-medium rounded-md text-sm px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 
+        dark:focus:ring-blue-800 h-10 flex items-center justify-center" href="/admin/product">Back</a>
+    </div>
+    <div>
+        <form action="/admin/product/store" method="POST" enctype="multipart/form-data">
+            <div class="w-50 m-auto">  
+                <div class="pb-2">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                    <input type="text" name="name" class="form-control" id="name" required>
+                </div>
+                <div class="pb-2">
+                    <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                    <input type="text" name="price" class="form-control" id="price">
+                </div>
+                <div class="pb-2">
+                    <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                    <textarea class="form-control" name="description" id="description"></textarea>
+                </div>
+                <div class="pb-2 row">
+                    <div class="col-6">
+                        <label for="brand_id">Brand</label>
+                        <select class="form-control" name="brand_id" id="brand_id">
+                            <option value="">Choose brand</option>
+                            <% brands.forEach(brand => { %>
+                                <option value="<%= brand.id %>"><%= brand.name %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label for="type_id">Type</label>
+                        <select class="form-control" name="type_id" id="type_id">
+                            <option value="">Choose type</option>
+                            <% types.forEach(type => { %>
+                                <option value="<%= type.id %>"><%= type.name %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+                <div class="d-flex pb-2 gap-2">
+                    <img class="image-prd-preview" src="" id="image_prd_preview">
+                    <input type="file" name="image" id="image_prd">
+                </div>
+                <div class="pb-2">
+                    <div class="upload__box">
+                        <div class="upload__btn-box">
+                          <label class="upload__btn">
+                            <p>Upload images</p>
+                            <input type="file" name="sub_image" data-max_length="20" class="upload__inputfile" multiple>
+                          </label>
+                        </div>
+                        <div class="upload__img-wrap"></div>
+                    </div>
+                </div>
+                <div class="flex justify-center items-center">
+                    <button class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 
+                    font-medium rounded-md text-sm px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 
+                    dark:focus:ring-blue-800 h-10 flex items-center justify-center" type="submit">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>  

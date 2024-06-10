@@ -10,6 +10,7 @@ const BrandController = require('../controllers/admin/BrandController');
 const ColorController = require('../controllers/admin/ColorController');
 const ProductController = require('../controllers/admin/ProductController');
 const passport = require('passport');
+const upload = require('../../src/Middleware/upload');
 
 router.get('/', HomeController.index);
 router.get('/register', (req, res) => {
@@ -47,6 +48,9 @@ router.get('/color/create', ColorController.create);
 router.post('/color/store', ColorController.store);
 
 router.get('/product', ProductController.index);
+router.get('/product/create', ProductController.create);
+router.post('/product/store', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'sub_image', maxCount: 10 }]), ProductController.store);
+router.get('/product/show/:id', ProductController.show);
 
 module.exports = router
 
