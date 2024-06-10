@@ -8,6 +8,7 @@ const StaffController = require('../controllers/admin/StaffController');
 const TypeController = require('../controllers/admin/TypeController');
 const BrandController = require('../controllers/admin/BrandController');
 const ColorController = require('../controllers/admin/ColorController');
+const AttributeController = require('../controllers/admin/AttributeController');
 const ProductController = require('../controllers/admin/ProductController');
 const passport = require('passport');
 const upload = require('../../src/Middleware/upload');
@@ -46,6 +47,10 @@ router.post('/brand/store', BrandController.store);
 router.get('/color', ColorController.index);
 router.get('/color/create', ColorController.create);
 router.post('/color/store', ColorController.store);
+
+router.get('/attribute', AttributeController.index);
+router.get('/attribute/create', AttributeController.create);
+router.post('/attribute/store', AttributeController.store);
 
 router.get('/product', ProductController.index);
 router.get('/product/create', ProductController.create);

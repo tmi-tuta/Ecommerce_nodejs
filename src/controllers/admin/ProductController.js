@@ -1,7 +1,9 @@
 const Product = require('../../models/Product');
 const Type = require('../../models/Type');
 const Brand = require('../../models/Brand');
+const Attribute = require('../../models/Attribute');
 const ImageProduct = require('../../models/ImageProduct');
+const ProductAttribute = require('../../models/ProductAttribute');
 
 const index = async(req, res) => {
     try {
@@ -16,7 +18,8 @@ const index = async(req, res) => {
 const create = async(req,res) => {
     const types = await Type.find(); 
     const brands = await Brand.find();
-    res.render('admin/product/create', {types: types, brands: brands, title: 'Create Product'});
+    const attributes = await Attribute.find();
+    res.render('admin/product/create', {types: types, brands: brands, attributes: attributes, title: 'Create Product'});
 }
 
 const store =async(req, res) => {
@@ -24,6 +27,7 @@ const store =async(req, res) => {
         const image = req.files['image'] ? req.files['image'][0].path.replace('public', '') : '';
         const sub_images = req.files['sub_image'] ? req.files['sub_image'].map(file => file.path.replace('public', '')) : [];
         const { name, price, description, brand_id, type_id } = req.body;
+        const attributeIds = req.body.attribute_id;
         const createProduct = await Product.create({
             name: name,
             price: price,
@@ -32,15 +36,24 @@ const store =async(req, res) => {
             type_id: type_id,
             image: image,
         });
+        // Save Sub images
         for (const sub_image of sub_images) {
             const createSubImage = await ImageProduct.create({
                 product_id: createProduct._id,
                 image: sub_image,
             });
         };
+        // Save Attributes
+        for (const attributeId of attributeIds) {
+            const createAttribute = await ProductAttribute.create({
+                attribute_id: attributeId,
+                product_id: createProduct._id,
+            });
+        };
         res.redirect('/admin/product/');
     } catch (error) {
         console.log(error);
+        res.redirect('/admin/product/');
     }
 }
 
@@ -48,7 +61,8 @@ const show = async(req,res) => {
     id = req.params.id;
     const product = await Product.findOne({ _id: id }).populate([{path: 'brand_id'}, {path: 'type_id'}]).exec(); 
     const images = await ImageProduct.find({ product_id : id }).populate([{path: 'product_id'}]).exec();
-    res.render('admin/product/show', {product: product, images: images, title: 'Product detail'});
+    const attributes = await ProductAttribute.find({ product_id : id }).populate([{path: 'attribute_id'}]).exec();
+    res.render('admin/product/show', {product: product, images: images, attributes: attributes, title: 'Product detail'});
 }
 
 module.exports = {

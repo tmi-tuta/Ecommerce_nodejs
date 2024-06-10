@@ -105078,3 +105078,7 @@ video {
 .bg-slate-400 {
     background-color: rgb(148 163 184);
 }
+
+.w-fit {
+    width: fit-content;
+}

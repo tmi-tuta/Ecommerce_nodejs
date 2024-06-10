@@ -19,6 +19,7 @@ var menuStaff = $('.admin-staff');
 var menuType = $('.admin-type');
 var menuBrand = $('.admin-brand');
 var menuColor = $('.admin-color');
+var menuAttribute = $('.admin-attribute');
 var menuProduct = $('.admin-product');
 var menuOrder = $('.admin-order');
 var menuVoucher = $('.admin-voucher');
@@ -41,6 +42,8 @@ if (currentPath == '/admin/role') {
   menuVoucher.addClass('active');
 } else if (currentPath == '/admin/warehouse') {
   menuWarehouse.addClass('active');
+} else if (currentPath == '/admin/attribute') {
+  menuAttribute.addClass('active');
 } else {
   $('.item-menu').removeClass('active');
 }
@@ -117,3 +120,15 @@ function ImgUpload() {
     $(this).parent().parent().remove();
   });
 }
+
+let content = CKEDITOR.replace('description', {
+  language: 'en',
+  autoParagraph: false
+})
+
+$( '#multiple-select-field' ).select2( {
+  theme: "bootstrap-5",
+  width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+  placeholder: $( this ).data( 'placeholder' ),
+  closeOnSelect: false,
+});

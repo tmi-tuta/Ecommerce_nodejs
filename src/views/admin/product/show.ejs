@@ -22,7 +22,7 @@
         <h2 class="text-2xl font-extrabold text-[#333]"><%= product.name %> | <%= product.type_id.name %></h2>
         <div class="flex flex-wrap gap-4 mt-4">
           <label class="text-xl" for="price">Price:</label>
-          <p class="text-[#333] text-xl" id="price">$<%= product.price %></p>
+          <p class="text-[#333] text-xl" id="price"><%= formatCurrency(product.price) %></p>
         </div>
         <hr>
         <p class="text-[#333] text-2xl font-bold">Infomation</p>
@@ -30,11 +30,25 @@
           <label class="text-xl" for="price">Type:</label>
           <p class="text-[#333] text-xl" id="price"><%= product.type_id.name %></p>
         </div>
+        <hr>
         <div class="flex flex-wrap gap-4">
           <label class="text-xl" for="price">Brand:</label>
           <p class="text-[#333] text-xl" id="price"><%= product.brand_id.name %></p>
         </div>
+        <hr>
+        <% attributes.forEach(attributeProduct => { %>
+          <div class="flex flex-wrap gap-4">
+            <label class="text-xl" for="price"><%= attributeProduct.attribute_id.name %>:</label>
+            <p class="text-[#333] text-xl" id="price"><%= attributeProduct.attribute_id.description %></p>
+          </div>
+          <hr>
+        <% }) %>
       </div>
+    </div>
+    <hr>
+    <div class="mt-3 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] px-6">
+      <h2 class="text-2xl font-extrabold text-[#333]">Description</h2>
+      <p class="text-[#333] text-xl" id="price"><%= product.description %></p>
     </div>
   </div>
 </div>
