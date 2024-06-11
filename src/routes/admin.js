@@ -35,6 +35,9 @@ router.get('/staff', StaffController.index);
 router.get('/role', RoleController.index);
 router.get('/role/create', RoleController.create);
 router.post('/role/store', RoleController.store);
+router.get('/role/:id/edit', RoleController.edit);
+router.post('/role/:id/update', RoleController.update);
+router.get('/role/:id/delete', RoleController.destroy);
 
 router.get('/type', TypeController.index);
 router.get('/type/create', TypeController.create);
