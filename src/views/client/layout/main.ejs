@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="/css/tailwind.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/css/client/blog_responsive.css">
+    <link type="text/css" rel="stylesheet" href="/css/client/blog_single_responsive.css">
+    <link type="text/css" rel="stylesheet" href="/css/client/blog_single_styles.css">
+    <link type="text/css" rel="stylesheet" href="/css/client/blog_styles.css">
+    <link type="text/css" rel="stylesheet" href="/css/client/cart_responsive.css">
+    <link type="text/css" rel="stylesheet" href="/css/client/cart_styles.css">
+    <link type="text/css" rel="stylesheet" href="/css/client/contact_responsive.css">
+    <link type="text/css" rel="stylesheet" href="/css/client/contact_styles.css">
+    <link type="text/css" rel="stylesheet" href="/css/client/main_styles.css">
+    <link type="text/css" rel="stylesheet" href="/css/client/product_responsive.css">
+    <link type="text/css" rel="stylesheet" href="/css/client/product_styles.css">
+    <link type="text/css" rel="stylesheet" href="/css/client/regular_responsive.css">
+    <link type="text/css" rel="stylesheet" href="/css/client/regular_styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <%- include('../../client/layout/header.ejs') %>
+        <main>
+            <%- body %>
+        </main>
+        <%- include('../../client/layout/footer.ejs') %>
+    </div>
+</body>
+
+</html>

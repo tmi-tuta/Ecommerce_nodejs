@@ -1,8 +1,8 @@
-const UserRouter = require('../routes/user');
+const ClientRouter = require('../routes/client');
 const AdminRouter = require('../routes/admin');
 
 const routes = (app) => {
-    app.use('/api/user', UserRouter),
+    app.use('/', ClientRouter),
     app.use('/admin', AdminRouter)
 }
 
