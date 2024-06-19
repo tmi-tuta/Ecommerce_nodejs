@@ -15,12 +15,12 @@ const upload = require('../../src/Middleware/upload');
 
 router.get('/', HomeController.index);
 router.get('/register', (req, res) => {
-    res.render('admin/auth/register', { title: 'Register' });
+    res.render('admin/auth/register', { title: 'Register', layout: 'admin/layout/auth' });
 });
 
 router.post('/register', RegisterController.store);
 router.get('/login', (req, res) => {
-    res.render('admin/auth/login', { title: 'Login'});
+    res.render('admin/auth/login', { title: 'Login', layout: 'admin/layout/auth' });
 });
 // router.post('/login', LoginController.login);
 router.post('/login', passport.authenticate('local', {
@@ -42,18 +42,30 @@ router.get('/role/:id/delete', RoleController.destroy);
 router.get('/type', TypeController.index);
 router.get('/type/create', TypeController.create);
 router.post('/type/store', TypeController.store);
+router.get('/type/:id/edit', TypeController.edit);
+router.post('/type/:id/update', TypeController.update);
+router.get('/type/:id/delete', TypeController.destroy);
 
 router.get('/brand', BrandController.index);
 router.get('/brand/create', BrandController.create);
 router.post('/brand/store', BrandController.store);
+router.get('/brand/:id/edit', BrandController.edit);
+router.post('/brand/:id/update', BrandController.update);
+router.get('/brand/:id/delete', BrandController.destroy);
 
 router.get('/color', ColorController.index);
 router.get('/color/create', ColorController.create);
 router.post('/color/store', ColorController.store);
+router.get('/color/:id/edit', ColorController.edit);
+router.post('/color/:id/update', ColorController.update);
+router.get('/color/:id/delete', ColorController.destroy);
 
 router.get('/attribute', AttributeController.index);
 router.get('/attribute/create', AttributeController.create);
 router.post('/attribute/store', AttributeController.store);
+router.get('/attribute/:id/edit', AttributeController.edit);
+router.post('/attribute/:id/update', AttributeController.update);
+router.get('/attribute/:id/delete', AttributeController.destroy);
 
 router.get('/product', ProductController.index);
 router.get('/product/create', ProductController.create);

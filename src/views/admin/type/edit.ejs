@@ -1,0 +1,20 @@
+<div class="container mt-2">
+    <div class="flex items-center justify-start">
+        <a class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 
+        font-medium rounded-md text-sm px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 
+        dark:focus:ring-blue-800 h-10 flex items-center justify-center" href="/admin/type">Back</a>
+    </div>
+    <div>
+        <form action="/admin/type/<%= type.id %>/update" method="POST">
+            <div class="flex items-end justify-center gap-2">  
+                <div>
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
+                    <input type="text" name="name"class="form-control" id="name" required value="<%= type.name %>" placeholder="name:">
+                </div>
+                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 
+                font-medium rounded-md text-sm px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 
+                dark:focus:ring-blue-800 h-10 flex items-center justify-center" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+</div>  

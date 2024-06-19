@@ -35,8 +35,52 @@ const store = async(req, res) => {
     }
 }
 
+const edit = async(req,res) => {
+    id = req.params.id;
+    const brand = await Brand.findOne({ _id: id })
+    res.render('admin/brand/edit', { title: 'Edit Brand', brand: brand});
+}
+
+const update = async(req, res) => {
+    try {
+        const { name, location, description } = req.body;
+        const id = req.params.id;
+        if (!name) {
+            return res.status(400).json({
+                status: 'ERR',
+                message: 'The input is required.'
+            });
+        }
+        const updateBrand = await Brand.findByIdAndUpdate(id, { name, location, description }, { new: true });
+        res.redirect('/admin/brand');
+    } catch (e) {
+        console.log(e);
+        res.status(400);
+    }
+}
+
+const destroy = async(req, res) => {
+    try {
+        const id = req.params.id;
+        const brand = await Brand.findByIdAndDelete(id);
+        if (!brand) {
+            return res.status(404).json({
+                status: 'ERR',
+                message: 'Brand not found.'
+            });
+        }
+        res.redirect('/admin/brand');
+    } catch (e) {
+        console.log(e);
+        res.status(400);
+    }
+}
+
 module.exports = {
     index,
     create,
-    store
+    store,
+    edit,
+    update,
+    destroy
 };
