@@ -43,6 +43,11 @@
           </div>
           <hr>
         <% }) %>
+        <div class="flex items-center justify-start gap-2 mt-2">
+          <% colors.forEach(color => { %>
+            <input type="color" value="<%= color.color_id.color %>">
+          <% }) %>
+        </div>
       </div>
     </div>
     <hr>

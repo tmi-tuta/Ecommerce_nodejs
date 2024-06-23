@@ -43,6 +43,14 @@
                         <% }) %>
                     </select>
                 </div>
+                <div class="pb-2">
+                    <label for="multiple-select-colors">Colors</label>
+                    <select name="color_id" class="form-select" id="multiple-select-colors" data-placeholder="Choose Colors" multiple>
+                        <% colors.forEach(color => { %>
+                        <option value="<%= color.id %>"><%= color.name %> - <%= color.color %></option>
+                        <% }) %>
+                    </select>
+                </div>
                 <div class="d-flex pb-2 gap-2">
                     <img class="image-prd-preview" src="" id="image_prd_preview">
                     <input type="file" name="image" id="image_prd">

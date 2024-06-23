@@ -2,8 +2,10 @@ const Product = require('../../models/Product');
 const Type = require('../../models/Type');
 const Brand = require('../../models/Brand');
 const Attribute = require('../../models/Attribute');
+const Color = require('../../models/Color');
 const ImageProduct = require('../../models/ImageProduct');
 const ProductAttribute = require('../../models/ProductAttribute');
+const ProductColor = require('../../models/ProductColor');
 
 const index = async(req, res) => {
     try {
@@ -17,9 +19,10 @@ const index = async(req, res) => {
 
 const create = async(req,res) => {
     const types = await Type.find(); 
-    const brands = await Brand.find();
+    const brands = await Brand.find();  
     const attributes = await Attribute.find();
-    res.render('admin/product/create', {types: types, brands: brands, attributes: attributes, title: 'Create Product'});
+    const colors = await Color.find();
+    res.render('admin/product/create', {types: types, brands: brands, attributes: attributes, colors: colors, title: 'Create Product'});
 }
 
 const store =async(req, res) => {
@@ -28,6 +31,7 @@ const store =async(req, res) => {
         const sub_images = req.files['sub_image'] ? req.files['sub_image'].map(file => file.path.replace('public', '')) : [];
         const { name, price, description, brand_id, type_id } = req.body;
         const attributeIds = req.body.attribute_id;
+        const colorIds = req.body.color_id;
         const createProduct = await Product.create({
             name: name,
             price: price,
@@ -50,6 +54,13 @@ const store =async(req, res) => {
                 product_id: createProduct._id,
             });
         };
+        // Save colors
+        for (const colorId of colorIds) {
+            const createColorProduct = await ProductColor.create({
+                color_id: colorId,
+                product_id: createProduct._id,
+            });
+        };
         res.redirect('/admin/product/');
     } catch (error) {
         console.log(error);
@@ -62,7 +73,8 @@ const show = async(req,res) => {
     const product = await Product.findOne({ _id: id }).populate([{path: 'brand_id'}, {path: 'type_id'}]).exec(); 
     const images = await ImageProduct.find({ product_id : id }).populate([{path: 'product_id'}]).exec();
     const attributes = await ProductAttribute.find({ product_id : id }).populate([{path: 'attribute_id'}]).exec();
-    res.render('admin/product/show', {product: product, images: images, attributes: attributes, title: 'Product detail'});
+    const colors = await ProductColor.find({ product_id : id }).populate([{path: 'color_id'}]).exec();
+    res.render('admin/product/show', {product: product, images: images, attributes: attributes, colors: colors, title: 'Product detail'});
 }
 
 module.exports = {

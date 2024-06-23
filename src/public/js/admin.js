@@ -14,16 +14,18 @@ $('.data-table').dataTable( {
   });
 
 const currentPath = window.location.pathname;
-var menuRole = $('.admin-role');
-var menuStaff = $('.admin-staff');
-var menuType = $('.admin-type');
-var menuBrand = $('.admin-brand');
-var menuColor = $('.admin-color');
-var menuAttribute = $('.admin-attribute');
-var menuProduct = $('.admin-product');
-var menuOrder = $('.admin-order');
-var menuVoucher = $('.admin-voucher');
-var menuWarehouse = $('.admin-warehouse');
+let menuRole = $('.admin-role');
+let menuStaff = $('.admin-staff');
+let menuType = $('.admin-type');
+let menuBrand = $('.admin-brand');
+let menuColor = $('.admin-color');
+let menuAttribute = $('.admin-attribute');
+let menuProduct = $('.admin-product');
+let menuOrder = $('.admin-order');
+let menuVoucher = $('.admin-voucher');
+let menuBanner = $('.admin-banner');
+let menuEvent = $('.admin-event');
+let menuWarehouse = $('.admin-warehouse');
 if (currentPath == '/admin/role') {
   menuRole.addClass('active');
 } else if (currentPath == '/admin/staff') {
@@ -40,6 +42,10 @@ if (currentPath == '/admin/role') {
   menuOrder.addClass('active');
 } else if (currentPath == '/admin/voucher') {
   menuVoucher.addClass('active');
+}  else if (currentPath == '/admin/banner') {
+  menuBanner.addClass('active');
+} else if (currentPath == '/admin/event') {
+  menuEvent.addClass('active');
 } else if (currentPath == '/admin/warehouse') {
   menuWarehouse.addClass('active');
 } else if (currentPath == '/admin/attribute') {
@@ -127,6 +133,13 @@ let content = CKEDITOR.replace('description', {
 })
 
 $( '#multiple-select-field' ).select2( {
+  theme: "bootstrap-5",
+  width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+  placeholder: $( this ).data( 'placeholder' ),
+  closeOnSelect: false,
+});
+
+$('#multiple-select-colors').select2({
   theme: "bootstrap-5",
   width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
   placeholder: $( this ).data( 'placeholder' ),

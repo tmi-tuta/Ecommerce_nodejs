@@ -10,6 +10,7 @@ const BrandController = require('../controllers/admin/BrandController');
 const ColorController = require('../controllers/admin/ColorController');
 const AttributeController = require('../controllers/admin/AttributeController');
 const ProductController = require('../controllers/admin/ProductController');
+const EventController = require('../controllers/admin/EventController');
 const passport = require('passport');
 const upload = require('../../src/Middleware/upload');
 
@@ -71,6 +72,10 @@ router.get('/product', ProductController.index);
 router.get('/product/create', ProductController.create);
 router.post('/product/store', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'sub_image', maxCount: 10 }]), ProductController.store);
 router.get('/product/show/:id', ProductController.show);
+
+router.get('/event', EventController.index);
+router.get('/event/create', EventController.create);
+router.post('/event/store', upload.single('image'), EventController.store);
 
 module.exports = router
 
