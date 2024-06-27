@@ -99,3 +99,10 @@ background-size: cover;
 position: relative;
 padding-bottom: 100%;
 }
+
+.image-banner-preview {
+    width: 600px;
+    height: 200px;
+    aspect-ratio: 1.91;
+    background-color: #dfdfdf;
+}
