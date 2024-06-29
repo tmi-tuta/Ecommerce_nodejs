@@ -1,0 +1,35 @@
+<div class="container my-2">
+    <div class="flex items-center justify-start">
+        <a class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 
+        font-medium rounded-md text-sm px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 
+        dark:focus:ring-blue-800 h-10 flex items-center justify-center" href="/admin/event">Back</a>
+    </div>
+    <div>
+        <form action="/admin/event_product/store" method="POST">
+            <div class="w-50 m-auto">  
+                <div class="pb-2 row">
+                    <label for="event_id">Event</label>
+                    <select class="form-control" name="event_id" id="event_id">
+                        <option value="">Choose event</option>
+                        <% events.forEach(event => { %>
+                            <option value="<%= event.id %>"><%= event.title %> - <%= event.discount %>%</option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="pb-2">
+                    <label for="multiple-select-products">Products</label>
+                    <select name="product_id[]" class="form-select" id="multiple-select-products" data-placeholder="Choose products" multiple>
+                        <% products.forEach(product => { %>
+                        <option value="<%= product.id %>"><%= product.name %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="flex justify-center items-center">
+                    <button class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 
+                    font-medium rounded-md text-sm px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 
+                    dark:focus:ring-blue-800 h-10 flex items-center justify-center" type="submit">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>  

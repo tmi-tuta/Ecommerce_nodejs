@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const createUser = (newUser) => {
     return new Promise(async (resolve, reject) => {
-        const { name, email, password, phone } = newUser;
+        const { name, email, password, phone, user_role } = newUser;
         const hashedPassword = await bcrypt.hash(password, 10);
         const accessToken = jwt.sign({ email }, 'your_access_token_secret', { expiresIn: '1h' });
         const refreshToken = jwt.sign({ email }, 'your_refresh_token_secret', { expiresIn: '7d' });
@@ -13,6 +13,7 @@ const createUser = (newUser) => {
                 name, 
                 email, 
                 password: hashedPassword, 
+                user_role,
                 phone,
                 access_token: accessToken,
                 refresh_token: refreshToken

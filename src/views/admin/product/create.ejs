@@ -37,7 +37,7 @@
                 </div>
                 <div class="pb-2">
                     <label for="multiple-select-field">Attributes</label>
-                    <select name="attribute_id" class="form-select" id="multiple-select-field" data-placeholder="Choose Attributes" multiple>
+                    <select name="attribute_id[]" class="form-select" id="multiple-select-field" data-placeholder="Choose Attributes" multiple>
                         <% attributes.forEach(attribute => { %>
                         <option value="<%= attribute.id %>"><%= attribute.name %> - <%= attribute.description %></option>
                         <% }) %>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="pb-2">
                     <label for="multiple-select-colors">Colors</label>
-                    <select name="color_id" class="form-select" id="multiple-select-colors" data-placeholder="Choose Colors" multiple>
+                    <select name="color_id[]" class="form-select" id="multiple-select-colors" data-placeholder="Choose Colors" multiple>
                         <% colors.forEach(color => { %>
                         <option value="<%= color.id %>"><%= color.name %> - <%= color.color %></option>
                         <% }) %>

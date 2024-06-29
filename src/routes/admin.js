@@ -12,6 +12,7 @@ const AttributeController = require('../controllers/admin/AttributeController');
 const ProductController = require('../controllers/admin/ProductController');
 const EventController = require('../controllers/admin/EventController');
 const BannerController = require('../controllers/admin/BannerController');
+const EventProductController = require('../controllers/admin/EventProductController');
 const passport = require('passport');
 const upload = require('../../src/Middleware/upload');
 
@@ -87,6 +88,9 @@ router.post('/banner/store', upload.single('image'), BannerController.store);
 router.get('/banner/:id/edit', BannerController.edit);
 router.post('/banner/:id/update', upload.single('image'), BannerController.update);
 router.get('/banner/:id/delete', BannerController.destroy);
+
+router.get('/event_product/create', EventProductController.create);
+router.post('/event_product/store', EventProductController.store);
 
 module.exports = router
 
