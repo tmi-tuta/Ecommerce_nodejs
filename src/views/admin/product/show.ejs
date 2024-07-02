@@ -28,12 +28,16 @@
         <p class="text-[#333] text-2xl font-bold">Infomation</p>
         <div class="flex flex-wrap gap-4">
           <label class="text-xl" for="price">Type:</label>
-          <p class="text-[#333] text-xl" id="price"><%= product.type_id.name %></p>
+          <% if (product.type_id) { %>
+            <p class="text-[#333] text-xl" id="price"><%= product.type_id.name %></p>
+          <% } %>
         </div>
         <hr>
         <div class="flex flex-wrap gap-4">
           <label class="text-xl" for="price">Brand:</label>
-          <p class="text-[#333] text-xl" id="price"><%= product.brand_id.name %></p>
+          <% if (product.brand_id) { %>
+            <p class="text-[#333] text-xl" id="price"><%= product.brand_id.name %></p>
+          <% } %>
         </div>
         <hr>
         <% attributes.forEach(attributeProduct => { %>

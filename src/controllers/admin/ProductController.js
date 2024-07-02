@@ -74,7 +74,13 @@ const show = async(req,res) => {
     const images = await ImageProduct.find({ product_id : id }).populate([{path: 'product_id'}]).exec();
     const attributes = await ProductAttribute.find({ product_id : id }).populate([{path: 'attribute_id'}]).exec();
     const colors = await ProductColor.find({ product_id : id }).populate([{path: 'color_id'}]).exec();
-    res.render('admin/product/show', {product: product, images: images, attributes: attributes, colors: colors, title: 'Product detail'});
+    res.render('admin/product/show', {
+        product: product, 
+        images: images, 
+        attributes: attributes, 
+        colors: colors, 
+        title: 'Product detail'
+    });
 }
 
 module.exports = {

@@ -17,8 +17,8 @@
                 </tr>
                 <tr>        
                     <th class="text-center">Quantity</th>
-                    <th class="text-center">Price</th>
-                    <th class="text-center">Price Total</th>
+                    <th class="text-center">Unit price</th>
+                    <th class="text-center">Total price</th>
                     <th class="text-center">User</th>
                     <th class="text-center">Date</th>
                 </tr>
@@ -26,9 +26,9 @@
             <tbody>
                 <% wareHouseins.forEach(wareHousein => { %>
                     <tr>
-                        <td class="text-center"><%= wareHousein.warehouse_id.quantity %></td>
+                        <td class="text-center"><%= wareHousein.quantity %></td>
                         <td class="text-center"><%= formatCurrency(wareHousein.price) %></td>
-                        <td class="text-center"><%= formatCurrency(wareHousein.price*wareHousein.warehouse_id.quantity) %></td>
+                        <td class="text-center"><%= formatCurrency(wareHousein.price*wareHousein.quantity) %></td>
                         <td class="text-center"><%= wareHousein.user_id.name %></td>
                         <td class="text-center"><%= formatDateTime(wareHousein.createdAt) %></td>
                     </tr>

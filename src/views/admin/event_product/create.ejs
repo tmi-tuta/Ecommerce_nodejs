@@ -9,7 +9,7 @@
             <div class="w-50 m-auto">  
                 <div class="pb-2 row">
                     <label for="event_id">Event</label>
-                    <select class="form-control" name="event_id" id="event_id">
+                    <select class="form-control" name="event_id" id="event_id" required>
                         <option value="">Choose event</option>
                         <% events.forEach(event => { %>
                             <option value="<%= event.id %>"><%= event.title %> - <%= event.discount %>%</option>
@@ -18,7 +18,7 @@
                 </div>
                 <div class="pb-2">
                     <label for="multiple-select-products">Products</label>
-                    <select name="product_id[]" class="form-select" id="multiple-select-products" data-placeholder="Choose products" multiple>
+                    <select name="product_id[]" class="form-select" id="multiple-select-products" data-placeholder="Choose products" multiple required>
                         <% products.forEach(product => { %>
                         <option value="<%= product.id %>"><%= product.name %></option>
                         <% }) %>

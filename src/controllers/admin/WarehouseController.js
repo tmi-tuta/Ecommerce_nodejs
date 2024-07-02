@@ -35,6 +35,7 @@ const store = async(req, res) => {
         const wareHouseIn = await WareHouseIn.create({
             warehouse_id: createWareHouse._id,
             user_id: userId,
+            quantity: quantity,
             price: price,
         });
         res.redirect('/admin/warehouse');
@@ -58,15 +59,15 @@ const inport = async(req, res) => {
         const { quantity, price } = req.body;
         const userId = req.user.id;
         const warehouseId = req.params.id;
-        console.log(warehouseId);
         const wareHouseIn = await WareHouseIn.create({
             warehouse_id: warehouseId,
             user_id: userId,
+            quantity: quantity,
             price: price,
         });
-        // const oldWareHouse = await WareHouse.findOne({ _id: wareHouseIn });
-        // const newQuantity = oldWareHouse.quantity + quantity;
-        // const update = await Brand.findByIdAndUpdate(warehouseId, { quantity: newQuantity }, { new: true });
+        const oldWareHouse = await WareHouse.findOne({ _id: warehouseId });
+        const newQuantity = Number(oldWareHouse.quantity) + Number(quantity);
+        const update = await WareHouse.findByIdAndUpdate(warehouseId, { quantity: newQuantity }, { new: true });
         res.redirect('/admin/warehouse');
     } catch (error) {
         console.log(error);
