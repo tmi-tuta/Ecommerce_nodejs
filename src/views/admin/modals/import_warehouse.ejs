@@ -1,0 +1,30 @@
+<div class="modal fade" id="import_warehouse" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Import</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/admin/warehouse/import/<%= wareHousein.warehouse_id %>" method="POST">
+                <div class="w-100 m-auto">  
+                    <div class="pb-2">
+                        <label for="quantity" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                        <input type="text" name="quantity" class="form-control" id="quantity">
+                    </div>
+                    <div class="pb-2">
+                        <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                        <input type="text" name="price" class="form-control" id="price">
+                    </div>
+                    <div class="flex justify-center items-center gap-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 
+                        font-medium rounded-md text-sm px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 
+                        dark:focus:ring-blue-800 h-10 flex items-center justify-center" type="submit">Import</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>

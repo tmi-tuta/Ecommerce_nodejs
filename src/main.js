@@ -8,7 +8,7 @@ const exPressLayouts = require("express-ejs-layouts");
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require('passport');
-const { formatCurrency, formatNewCurrency } = require('./helper/fomart');
+const { formatCurrency, formatNewCurrency, formatDateTime } = require('./helper/fomart');
 // const LocalStrategy = require('passport-local').Strategy;
 // const config_Passport = require('./config/passport');
 // const cookieParser = require('cookie-parser');
@@ -44,6 +44,12 @@ app.use((req, res, next) => {
     res.locals.isLoggedIn = req.isAuthenticated();
     res.locals.formatCurrency = formatCurrency;
     res.locals.formatNewCurrency = formatNewCurrency;
+    res.locals.formatDateTime = formatDateTime;
+    if (req.user) {
+        res.locals.userLogged = req.user;
+    } else {
+        res.locals.userLogged = null;
+    }
     next();
 }); 
 

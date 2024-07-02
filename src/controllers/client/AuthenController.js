@@ -75,9 +75,23 @@ const postLogin = async(req, res, next) => {
     }
 }
 
+const logout = (req, res) => {
+    if (req.isAuthenticated()) {
+        req.logout((err) => {
+            if (err) {
+                return next(err);
+            }
+            res.redirect('/home');
+        });
+    } else {
+        res.redirect('/home');
+    }
+}
+
 module.exports = {
     create,
     store,
     login,
     postLogin,
+    logout,
 };

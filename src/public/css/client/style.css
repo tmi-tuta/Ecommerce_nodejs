@@ -6,3 +6,12 @@
 .best_sellers {
     height: 800px !important;
 }
+
+.icon-heart {
+    font-size: 20px;
+}
+
+.icon-heart:hover {
+    color: red;
+    cursor: pointer;
+}

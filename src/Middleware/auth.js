@@ -7,13 +7,22 @@ const isAuth = async(req, res, next) => {
 	}
 }
 
-const ensureAuthenticated = (req, res, next) {
+const ensureAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
         return next();
     }
     res.redirect('/login');
 }
 
+const ensureAuthenticatedAdmin = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('admin/login');
+}
+
 module.exports = {
-    isAuth
+    isAuth,
+    ensureAuthenticated,
+    ensureAuthenticatedAdmin
 }

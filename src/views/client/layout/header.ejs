@@ -10,12 +10,21 @@
                             <div class="user_icon">
                               <img src="images/user.svg" alt="">
                             </div>
-                            <div>
-                              <a href="/register">Register</a>
-                            </div>
-                            <div>
-                              <a href="/login">Sign in</a>
-                            </div>
+                            <% if (userLogged) { %>
+                                <span> Logged: <%= userLogged.name %></span>
+                                <span>|</span>
+                                <div>
+                                    <a href="/logout">logout</a>
+                                </div>
+                            <% } else { %>
+                                <div>
+                                    <a href="/register">Register</a>
+                                </div>
+                                <span>|</span>
+                                <div>
+                                    <a href="/login">Sign in</a>
+                                  </div>
+                            <% } %>
                         </div>
                     </div>
                 </div>
@@ -63,14 +72,19 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Wishlist -->
                 <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
                     <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                         <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-                            <div class="wishlist_icon"><img src="images/heart.png" alt=""></div>
+                            <div class="wishlist_icon">
+                                <a href="#" data-bs-toggle="offcanvas" data-bs-target="#heart">
+                                    <img src="images/heart.png" alt="">
+                                </a>
+                            </div>
                             <div class="wishlist_content">
-                                <div class="wishlist_text"><a href="#">Wishlist</a></div>
+                                <div class="wishlist_text">
+                                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#heart">Wishlist</a>
+                                </div>
                                 <div class="wishlist_count">115</div>
                             </div>
                         </div>
