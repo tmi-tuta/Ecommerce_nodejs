@@ -4,6 +4,7 @@ const HomeController = require('../controllers/client/HomeController');
 const ProductController = require('../controllers/client/ProductController');
 const AuthenController = require('../controllers/client/AuthenController');
 const HeartController = require('../controllers/client/HeartController');
+const CardController = require('../controllers/client/CartController');
 const passport = require('passport');
 const { ensureAuthenticated } = require('../Middleware/auth');
 

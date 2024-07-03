@@ -67,6 +67,32 @@ const store =async(req, res) => {
         res.redirect('/admin/product/');
     }
 }
+const edit = async(req,res) => {
+    id = req.params.id;
+    const product = await Product.findOne({ _id: id }).populate([{path: 'brand_id'}, {path: 'type_id'}]).exec(); 
+    const images = await ImageProduct.find({ product_id : id }).populate([{path: 'product_id'}]).exec();
+    const productAttr = await ProductAttribute.find({ product_id : id }).populate([{path: 'attribute_id'}]).exec();
+    const productColors = await ProductColor.find({ product_id : id }).populate([{path: 'color_id'}]).exec();
+    const types = await Type.find(); 
+    const brands = await Brand.find();  
+    const attributes = await Attribute.find();
+    const colors = await Color.find();
+    res.render('admin/product/edit', {
+        product: product, 
+        images: images,
+        productAttr: productAttr,
+        productColors: productColors,
+        types: types, 
+        brands: brands, 
+        attributes: attributes, 
+        colors: colors, 
+        title: 'Product edit'
+    });
+}
+
+const update =async(req, res) => {
+
+}
 
 const show = async(req,res) => {
     id = req.params.id;
@@ -87,5 +113,7 @@ module.exports = {
     index,
     create,
     store,
+    edit,
+    update,
     show,
 };

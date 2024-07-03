@@ -140,7 +140,7 @@
                             <div class="text-center mt-4">
                                 <div class="text-gray-900 font-bold text-lg line-through"><%= formatCurrency(product.price) %></div>
                                 <div class="text-gray-900 font-bold text-lg"><%= formatNewCurrency(product.price, eventGroup.event.discount) %></div>
-                                <button class="bg-gray-900 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800">Add to Cart</button>
+                                <button class="bg-gray-900 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 add-cart" data-id="<%= product.id %>">Add to Cart</button>
                             </div>
                         </div>
                     <% }) %>

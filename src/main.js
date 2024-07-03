@@ -9,6 +9,7 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require('passport');
 const { formatCurrency, formatNewCurrency, formatDateTime } = require('./helper/fomart');
+const Cart = require('./models/Cart');
 // const LocalStrategy = require('passport-local').Strategy;
 // const config_Passport = require('./config/passport');
 // const cookieParser = require('cookie-parser');
@@ -52,6 +53,13 @@ app.use((req, res, next) => {
     }
     next();
 }); 
+
+app.use((req, res, next) => {
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+    req.session.cart = cart;
+    res.locals.session = req.session;
+    next();
+});
 
 routes(app);
 

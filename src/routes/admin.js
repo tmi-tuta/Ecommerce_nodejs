@@ -75,6 +75,8 @@ router.get('/attribute/:id/delete', ensureAuthenticatedAdmin, AttributeControlle
 router.get('/product', ensureAuthenticatedAdmin, ProductController.index);
 router.get('/product/create', ensureAuthenticatedAdmin, ProductController.create);
 router.post('/product/store', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'sub_image', maxCount: 10 }]), ProductController.store);
+router.get('/product/:id/edit', ensureAuthenticatedAdmin, ProductController.edit);
+router.post('/product/:id/update', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'sub_image', maxCount: 10 }]), ProductController.update);
 router.get('/product/show/:id', ensureAuthenticatedAdmin, ProductController.show);
 
 router.get('/event', ensureAuthenticatedAdmin, EventController.index);
