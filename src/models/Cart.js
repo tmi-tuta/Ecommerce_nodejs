@@ -38,4 +38,19 @@ module.exports = function Cart(oldCart) {
       }
       return arr;
     };
-  };
+    
+    this.changeQty = (item, id, qty) => {
+      const itemQty = qty ? Number(qty) : 1;
+      var storeItem = this.items[id];
+      if (!storeItem) {
+        storeItem = this.items[id] = { item: item, qty: 0, price: 0, images: '' };
+        this.numItems++;
+      }
+      let oldQty = storeItem.qty;
+      storeItem.qty = itemQty;
+      storeItem.price = storeItem.item.price * storeItem.qty;
+      storeItem.images = storeItem.item.images[0];
+      this.totalQty += itemQty - oldQty;
+      this.totalPrice += storeItem.price - storeItem.item.price * oldQty;
+    };
+};

@@ -1,0 +1,59 @@
+<div id="tt-pageContent">
+	<div class="container-indent">
+		<div class="container">
+			<h1 class="tt-title-subpages noborder">Đơn hàng</h1>
+            <div class="tt-shopcart-table-02">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 100px;" class="text-center">Địa chỉ</th>
+                            <th style="width: 100px;" class="text-center">Điện thoại</th>
+                            <th style="width: 100px;" class="text-center">Tổng giá</th>
+                            <th style="width: 100px;" class="text-center">Tổng số lượng</th>
+                            <th style="width: 100px;" class="text-center">Trạng thái</th>
+                            <th style="width: 100px;" class="text-center">Chi tiết</th>
+                            <th style="width: 100px;" class="text-center">Hoạt động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% orders.forEach(order => { %>
+                            <tr>
+                                <td style="width: 100px;" class="text-center"><%= order.address %></td>
+                                <td style="width: 100px;" class="text-center"><%= order.phoneNumber %></td>
+                                <td style="width: 100px;" class="text-center"><%= formatCurrency(order.cart.totalPrice) %></td>
+                                <td style="width: 100px;" class="text-center"><%= order.cart.totalQty %></td>
+                                <td style="width: 100px;" class="text-center">
+                                    <% if (order.status == 1) { %>
+                                        <span>Chờ xác nhận</span>
+                                    <% } else if (order.status == 2) { %>
+                                        <span>Đã xác nhận</span>
+                                    <% } else if (order.status == 3) { %>
+                                        <span>Đã vận chuyển</span>
+                                    <% } else if (order.status == 4) { %> 
+                                        <span>Đã nhận hàng</span>  
+                                    <% } else if (order.status == 0) { %> 
+                                        <span>Đã hủy</span> 
+                                    <% } %>
+                                </td>
+                                <td class="text-left" style="width: 100px;">
+                                    <% Object.entries(order.cart.items).forEach(([key, item]) => { %>
+                                        <div>Name: <%= item.item.name %></div>
+                                        <div>Quantity: <%= item.qty %></div>
+                                        <div style="border-bottom: 1px solid gray;">Price: <%= formatCurrency(item.price) %></div>
+                                    <% }) %>
+                                </td>
+                                <td style="width: 100px;" class="text-center">
+                                    <% if (order.status == 1) { %>
+                                        <button class="btn btn-danger">Hủy đơn hàng</button>
+                                    <% } else if (order.status == 3) { %>
+                                        <button class="btn btn-primary">Đã nhận hàng</button>
+                                    <% } %>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+		</div>
+	</div>
+</div>

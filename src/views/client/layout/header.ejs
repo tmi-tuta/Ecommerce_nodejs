@@ -11,18 +11,22 @@
                               <img src="images/user.svg" alt="">
                             </div>
                             <% if (userLogged) { %>
-                                <span> Logged: <%= userLogged.name %></span>
+                                <span> Đã đăng nhập: <%= userLogged.name %></span>
                                 <span>|</span>
                                 <div>
-                                    <a href="/logout">logout</a>
+                                    <a href="/order/index">Đơn hàng</a>
+                                </div>
+                                <span>|</span>
+                                <div>
+                                    <a href="/logout">đăng xuất</a>
                                 </div>
                             <% } else { %>
                                 <div>
-                                    <a href="/register">Register</a>
+                                    <a href="/register">Đăng ký</a>
                                 </div>
                                 <span>|</span>
                                 <div>
-                                    <a href="/login">Sign in</a>
+                                    <a href="/login">Đăng nhập</a>
                                   </div>
                             <% } %>
                         </div>
@@ -77,13 +81,13 @@
                     <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                         <div class="wishlist d-flex flex-row align-items-center justify-content-end">
                             <div class="wishlist_icon">
-                                <a href="#" data-bs-toggle="offcanvas" data-bs-target="#heart">
-                                    <img src="images/heart.png" alt="">
+                                <a href="/heart/index">
+                                    <img src="/images/heart.png" alt="">
                                 </a>
                             </div>
                             <div class="wishlist_content">
                                 <div class="wishlist_text">
-                                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#heart">Wishlist</a>
+                                    <a href="/heart/index">Yêu thích</a>
                                 </div>
                                 <div class="wishlist_count">115</div>
                             </div>
@@ -93,14 +97,16 @@
                         <div class="cart">
                             <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                 <div class="cart_icon">
-                                    <img src="images/cart.png" alt="">
-                                    <div class="cart_count"><span>10</span></div>
+                                    <img src="/images/cart.png" alt="">
+                                    <div class="cart_count">
+                                        <span><%= session.cart.totalQty %></span>
+                                    </div>
                                 </div>
                                 <div class="cart_content">
                                     <div class="cart_text">
-                                            <a href="/cart/list">Cart</a>
+                                            <a href="/cart/shopping-cart">Giỏ hàng</a>
                                     </div>
-                                    <div class="cart_price">$85</div>
+                                    <div class="cart_price"><%= formatCurrency(session.cart.totalPrice) %></div>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +130,7 @@
                         <div class="cat_menu_container">
                             <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
                                 <div class="cat_burger"><span></span><span></span><span></span></div>
-                                <div class="cat_menu_text">categories</div>
+                                <div class="cat_menu_text">Loại</div>
                             </div>
 
                             <ul class="cat_menu">
@@ -137,9 +143,9 @@
                         </div>
                         <div class="main_nav_menu ms-2">
                             <ul class="standard_dropdown main_nav_dropdown">
-                                <li><a href="/home">Home<i class="fas fa-chevron-down"></i></a></li>
-                                <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                                <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
+                                <li><a href="/home">Trang chủ<i class="fas fa-chevron-down"></i></a></li>
+                                <li><a href="blog.html">Bài viết<i class="fas fa-chevron-down"></i></a></li>
+                                <li><a href="contact.html">Liên hệ<i class="fas fa-chevron-down"></i></a></li>
                             </ul>
                         </div>
                         <div class="menu_trigger_container ml-auto">

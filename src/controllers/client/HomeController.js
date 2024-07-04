@@ -11,10 +11,6 @@ const index = async(req, res) => {
     const types = await Type.find();  
     const products = await Product.find();
     const eventProducts = await EventProduct.find().populate(['product_id', 'event_id']);
-    // const userId = req.user.id;
-    // if (userId) {
-    //   const hearts = await Heart.find({ user_id : userId }).populate(['product_id']);
-    // }
     const groupedByEvent = eventProducts.reduce((acc, eventProduct) => {
         const eventId = eventProduct.event_id._id.toString();
         if (!acc[eventId]) {
@@ -27,12 +23,11 @@ const index = async(req, res) => {
         return acc;
     }, {});
     res.render('client/home/index', {
-        title: 'Home', 
+        title: 'Trang chủ', 
         banners: banners,
         events: events,
         types: types,
         products: products,
-        // hearts: hearts,
         groupedByEvent: groupedByEvent,
         layout: 'client/layout/main' });
 }

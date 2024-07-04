@@ -4,7 +4,7 @@ const HomeController = require('../controllers/client/HomeController');
 const ProductController = require('../controllers/client/ProductController');
 const AuthenController = require('../controllers/client/AuthenController');
 const HeartController = require('../controllers/client/HeartController');
-const CardController = require('../controllers/client/CartController');
+const OrderController = require('../controllers/client/OrderController');
 const passport = require('passport');
 const { ensureAuthenticated } = require('../Middleware/auth');
 
@@ -15,6 +15,7 @@ router.post('/post-register', AuthenController.store);
 
 router.get('/login', AuthenController.login);
 router.post('/login', passport.authenticate('local', {
+    successReturnToOrRedirect: "/cart/merge-cart",
     successRedirect: '/home',
     failureRedirect: '/login',
     failureFlash: true
@@ -24,7 +25,10 @@ router.get('/logout', AuthenController.logout);
 router.get('/product/show/:id', ProductController.show);
 router.get('/product/search/:id', ProductController.productOfType);
 
+router.get('/heart/index', ensureAuthenticated, HeartController.index);
 router.get('/heart/product/:id', ensureAuthenticated, HeartController.store);
+router.get('/heart/:id/delete', ensureAuthenticated, HeartController.destroy);
 
+router.get('/order/index', ensureAuthenticated, OrderController.index);
 module.exports = router
 

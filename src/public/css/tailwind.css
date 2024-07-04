@@ -16225,8 +16225,8 @@ video {
 
 .text-gray-900 {
     --text-opacity: 1;
-    color: #1a202c;
-    color: rgba(26, 32, 44, var(--text-opacity))
+    color: #1a202c !important;
+    color: rgba(26, 32, 44, var(--text-opacity)) !important;
 }
 
 .text-red-100 {

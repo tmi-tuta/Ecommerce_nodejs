@@ -1,0 +1,33 @@
+<div id="tt-pageContent">
+	<div class="container-indent">
+		<div class="container">
+			<h1 class="tt-title-subpages noborder">Yêu thích</h1>
+			<div class="tt-wishlist-box" id="js-wishlist-removeitem">
+				<div class="tt-wishlist-list">
+					<% hearts.forEach(heart => { %>
+						<div class="tt-item">
+							<div class="tt-col-description">
+								<div class="tt-img">
+									<img src="<%= heart.product_id.image.replace('src/', '') %>" alt="">
+								</div>
+								<div class="tt-description">
+									<h2 class="tt-title">
+										<a href="/product/show/<%= heart.product_id._id %>"><%= heart.product_id.name %></a>
+									</h2>
+									<div class="tt-price">
+										<span class="new-price"><%= formatCurrency(heart.product_id.price) %></span>
+									</div>
+								</div>
+							</div>
+							<div class="tt-col-btn">
+								<button class="tt-btn-addtocart add-cart" data-id="<%= heart.product_id._id %>">Thêm vào giỏ hàng</button>
+								<a class="btn-link" href="/product/show/<%= heart.product_id._id %>">Xem sản phẩm</a>
+								<a class="btn-link js-removeitem" href="/heart/<%= heart._id %>/delete"><i class="icon-h-02"></i>Xoá</a>
+							</div>
+						</div>
+					<% }) %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
