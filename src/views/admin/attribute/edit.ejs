@@ -2,23 +2,23 @@
     <div class="flex items-center justify-start">
         <a class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 
         font-medium rounded-md text-sm px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 
-        dark:focus:ring-blue-800 h-10 flex items-center justify-center" href="/admin/attribute">Back</a>
+        dark:focus:ring-blue-800 h-10 flex items-center justify-center" href="/admin/attribute">Quay lại</a>
     </div>
     <div>
         <form action="/admin/attribute/<%= attribute.id %>/update" method="POST">
             <div class="w-50 m-auto">  
                 <div class="pb-2">
-                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Attribute</label>
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Thuộc tính</label>
                     <input type="text" name="name"class="form-control" id="name" value="<%= attribute.name %>" required>
                 </div>
                 <div class="pb-2">
-                    <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                    <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Miêu tả</label>
                     <textarea class="form-control" name="description" id="description"><%= attribute.description %></textarea>
                 </div>
                 <div class="flex justify-center items-center">
                     <button class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 
                     font-medium rounded-md text-sm px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 
-                    dark:focus:ring-blue-800 h-10 flex items-center justify-center" type="submit">Update</button>
+                    dark:focus:ring-blue-800 h-10 flex items-center justify-center" type="submit">Cập nhật</button>
                 </div>
             </div>
         </form>

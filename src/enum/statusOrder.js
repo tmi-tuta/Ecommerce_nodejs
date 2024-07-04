@@ -3,6 +3,7 @@ const unconfirmed = 1;
 const confirmed = 2;
 const shipping = 3;
 const success = 4;
+const errorShipping = 5;
 
 module.exports = {
     unconfirmed,
@@ -10,4 +11,5 @@ module.exports = {
     shipping,
     success,
     error,
+    errorShipping,
 };

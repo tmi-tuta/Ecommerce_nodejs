@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register account</title>
+    <title>Đăng ký tài khoản</title>
     <!-- <link rel="stylesheet" href="/assets/style.css">
     <link rel="stylesheet" href="/assets/tailwind.css"> -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -11,13 +11,13 @@
 <body class="bg-gray-100">
     <div class="max-w-md mx-auto mt-20">
         <form action="/admin/register" method="POST" class="bg-white p-8 rounded shadow-md">
-            <h2 class="text-2xl mb-6 text-center">Register</h2>
+            <h2 class="text-2xl mb-6 text-center">Đăng ký</h2>
             <div class="mb-4">
-                <label for="username" class="block text-sm font-bold mb-2">Name</label>
+                <label for="username" class="block text-sm font-bold mb-2">Tên</label>
                 <input type="text" name="name" id="username" class="w-full p-2 border rounded" required>
             </div>
             <div class="mb-4">
-                <label for="phone-number" class="block text-sm font-bold mb-2">Phone</label>
+                <label for="phone-number" class="block text-sm font-bold mb-2">Điện thoại</label>
                 <input type="text" name="phone" id="phone-number" class="w-full p-2 border rounded" required>
             </div>
             <div class="mb-4">
@@ -25,14 +25,14 @@
                 <input type="email" name="email" id="email" class="w-full p-2 border rounded" required>
             </div>
             <div class="mb-4">
-                <label for="password" class="block text-sm font-bold mb-2">Password</label>
+                <label for="password" class="block text-sm font-bold mb-2">Mật khẩu</label>
                 <input type="password" name="password" id="password" class="w-full p-2 border rounded" required>
             </div>
             <div class="mb-4">
-                <label for="confirmPassword" class="block text-sm font-bold mb-2">Confirm Password</label>
+                <label for="confirmPassword" class="block text-sm font-bold mb-2">Xác nhận mật khẩu</label>
                 <input type="password" name="confirmPassword" id="confirmPassword" class="w-full p-2 border rounded" required>
             </div>
-            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded">Register</button>
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded">Đăng ký</button>
         </form>
     </div>
 </body>

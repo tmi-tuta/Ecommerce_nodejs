@@ -2,22 +2,22 @@
     <div class="flex items-center justify-start">
         <a class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 
         font-medium rounded-md text-sm px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 
-        dark:focus:ring-blue-800 h-10 flex items-center justify-center" href="/admin/product">Back</a>
+        dark:focus:ring-blue-800 h-10 flex items-center justify-center" href="/admin/product">Quay lại</a>
     </div>
     <div>
         <form action="/admin/product/update" method="POST" enctype="multipart/form-data">
             <div class="w-50 m-auto">  
                 <div class="pb-2">
-                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên</label>
                     <input type="text" name="name" class="form-control" id="name" required value="<%= product.name %>">
                 </div>
                 <div class="pb-2">
-                    <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                    <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Giá</label>
                     <input type="text" name="price" class="form-control" id="price" value="<%= product.price %>">
                 </div>
                 <div class="pb-2 row">
                     <div class="col-6">
-                        <label for="brand_id">Brand</label>
+                        <label for="brand_id">Thương hiệu</label>
                         <select class="form-control" name="brand_id" id="brand_id">
                             <option value="">Choose brand</option>
                             <% brands.forEach(brand => { %>
@@ -30,7 +30,7 @@
                         </select>
                     </div>
                     <div class="col-6">
-                        <label for="type_id">Type</label>
+                        <label for="type_id">Loại</label>
                         <select class="form-control" name="type_id" id="type_id">
                             <option value="">Choose type</option>
                             <% types.forEach(type => { %>
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="pb-2">
-                    <label for="multiple-select-field">Attributes</label>
+                    <label for="multiple-select-field">Thuộc tính</label>
                     <select name="attribute_id[]" class="form-select" id="multiple-select-field" data-placeholder="Choose Attributes" multiple>
                         <% attributes.forEach(attribute => { %>
                         <option value="<%= attribute.id %>"><%= attribute.name %> - <%= attribute.description %></option>
@@ -52,7 +52,7 @@
                     </select>
                 </div>
                 <div class="pb-2">
-                    <label for="multiple-select-colors">Colors</label>
+                    <label for="multiple-select-colors">Màu sắc</label>
                     <select name="color_id[]" class="form-select" id="multiple-select-colors" data-placeholder="Choose Colors" multiple>
                         <% colors.forEach(color => { %>
                         <option value="<%= color.id %>"><%= color.name %> - <%= color.color %></option>
@@ -67,7 +67,7 @@
                     <div class="upload__box">
                         <div class="upload__btn-box">
                           <label class="upload__btn">
-                            <p>Upload images</p>
+                            <p>Đăng hình ảnh</p>
                             <input type="file" name="sub_image" data-max_length="20" class="upload__inputfile" multiple>
                           </label>
                         </div>
@@ -79,13 +79,13 @@
                     </div>
                 </div>
                 <div class="pb-2">
-                    <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                    <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Miêu tả</label>
                     <textarea class="form-control" name="description" id="description"><%= product.description %></textarea>
                 </div>
                 <div class="flex justify-center items-center">
                     <button class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 
                     font-medium rounded-md text-sm px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 
-                    dark:focus:ring-blue-800 h-10 flex items-center justify-center" type="submit">Add</button>
+                    dark:focus:ring-blue-800 h-10 flex items-center justify-center" type="submit">Cập nhật</button>
                 </div>
             </div>
         </form>
