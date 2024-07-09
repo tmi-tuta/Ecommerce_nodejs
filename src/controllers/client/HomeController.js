@@ -6,6 +6,7 @@ const Product = require('../../models/Product');
 const Heart = require('../../models/Heart');
 
 const index = async(req, res) => {
+    const typeId = req.query.type_id;
     const banners = await Banner.find(); 
     const events = await Event.find();     
     const types = await Type.find();  
@@ -22,12 +23,16 @@ const index = async(req, res) => {
         acc[eventId].products.push(eventProduct.product_id);
         return acc;
     }, {});
+    let filteredProducts = products;
+    if (typeId) {
+        filteredProducts = products.filter(product => product.type_id.toString() === typeId);
+    }
     res.render('client/home/index', {
         title: 'Trang chủ', 
         banners: banners,
         events: events,
         types: types,
-        products: products,
+        products: filteredProducts,
         groupedByEvent: groupedByEvent,
         layout: 'client/layout/main' });
 }

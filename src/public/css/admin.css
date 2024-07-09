@@ -110,3 +110,8 @@ padding-bottom: 100%;
 .image-prd-admin {
     width: 100px;
 }
+
+.div-prd-admin img {
+    width: 60px;
+    height: 60px;
+}

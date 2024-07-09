@@ -5,6 +5,7 @@ const RegisterController = require('../controllers/admin/auth/RegisterController
 const LoginController = require('../controllers/admin/auth/LoginController');
 const RoleController = require('../controllers/admin/RoleController');
 const StaffController = require('../controllers/admin/StaffController');
+const CustomerController = require('../controllers/admin/CustomerController');
 const TypeController = require('../controllers/admin/TypeController');
 const BrandController = require('../controllers/admin/BrandController');
 const ColorController = require('../controllers/admin/ColorController');
@@ -37,6 +38,7 @@ router.post('/login', passport.authenticate('local', {
 router.get('/logout', ensureAuthenticatedAdmin, LoginController.logout);
 
 router.get('/staff', ensureAuthenticatedAdmin, StaffController.index);
+router.get('/customers', ensureAuthenticatedAdmin, CustomerController.index);
 
 router.get('/role', ensureAuthenticatedAdmin, RoleController.index);
 router.get('/role/create', ensureAuthenticatedAdmin, RoleController.create);
@@ -79,6 +81,7 @@ router.post('/product/store', upload.fields([{ name: 'image', maxCount: 1 }, { n
 router.get('/product/:id/edit', ensureAuthenticatedAdmin, ProductController.edit);
 router.post('/product/:id/update', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'sub_image', maxCount: 10 }]), ProductController.update);
 router.get('/product/show/:id', ensureAuthenticatedAdmin, ProductController.show);
+router.get('/product/:id/delete', ensureAuthenticatedAdmin, ProductController.destroy);
 
 router.get('/event', ensureAuthenticatedAdmin, EventController.index);
 router.get('/event/create', ensureAuthenticatedAdmin, EventController.create);

@@ -16,6 +16,7 @@ $('.data-table').dataTable( {
 const currentPath = window.location.pathname;
 let menuRole = $('.admin-role');
 let menuStaff = $('.admin-staff');
+let menuCustomer = $('.admin-customer');
 let menuType = $('.admin-type');
 let menuBrand = $('.admin-brand');
 let menuColor = $('.admin-color');
@@ -30,6 +31,8 @@ if (currentPath == '/admin/role') {
   menuRole.addClass('active');
 } else if (currentPath == '/admin/staff') {
   menuStaff.addClass('active');
+} else if (currentPath == '/admin/customers') {
+  menuCustomer.addClass('active');
 } else if (currentPath == '/admin/type') {
   menuType.addClass('active');
 } else if (currentPath == '/admin/brand') {

@@ -5,11 +5,16 @@
     </div>
     <div class="offcanvas-body">
         <ul class="pl-0">
-            <li class="text-center d-flex items-center justify-start h-10 item-menu admin-role">
-                <a class="px-2" href="/admin/role">Quản lí quyền</a>
-            </li>
-            <li class="text-center d-flex items-center justify-start h-10 item-menu admin-staff">
-                <a class="px-2" href="/admin/staff">Quản lý nhân viên</a>
+            <% if (userLogged && userLogged.user_role == 1) { %>
+                <li class="text-center d-flex items-center justify-start h-10 item-menu admin-role">
+                    <a class="px-2" href="/admin/role">Quản lí quyền</a>
+                </li>
+                <li class="text-center d-flex items-center justify-start h-10 item-menu admin-staff">
+                    <a class="px-2" href="/admin/staff">Quản lý nhân viên</a>
+                </li>
+            <% } %>
+            <li class="text-center d-flex items-center justify-start h-10 item-menu admin-customer">
+                <a class="px-2" href="/admin/customers">Quản lý khách hàng</a>
             </li>
             <li class="text-center d-flex items-center justify-start h-10 item-menu admin-type">
                 <a class="px-2" href="/admin/type">Quản lý loại</a>
@@ -30,7 +35,7 @@
                 <a class="px-2" href="/admin/voucher">Voucher manager</a>
             </li> -->
             <li class="text-center d-flex items-center justify-start h-10 item-menu admin-banner">
-                <a class="px-2" href="/admin/banner">Banner Manager</a>
+                <a class="px-2" href="/admin/banner">Quản lý Banner</a>
             </li>
             <li class="text-center d-flex items-center justify-start h-10 item-menu admin-event">
                 <a class="px-2" href="/admin/event">Quản lý sự kiện</a>

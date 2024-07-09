@@ -23,7 +23,6 @@ router.post('/login', passport.authenticate('local', {
 router.get('/logout', AuthenController.logout);
 
 router.get('/product/show/:id', ProductController.show);
-router.get('/product/search/:id', ProductController.productOfType);
 
 router.get('/heart/index', ensureAuthenticated, HeartController.index);
 router.get('/heart/product/:id', ensureAuthenticated, HeartController.store);

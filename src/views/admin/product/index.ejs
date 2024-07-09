@@ -2,27 +2,33 @@
     <div class="flex items-center justify-end">
         <a class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 
         font-medium rounded-md text-sm px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 
-        dark:focus:ring-blue-800 h-10 flex items-center justify-center" href="/admin/product/create">Add</a>
+        dark:focus:ring-blue-800 h-10 flex items-center justify-center" href="/admin/product/create">Thêm</a>
     </div>
     <div class="container-table mx-2">
         <table class="table table-striped table-hover data-table" style="max-width: 1300px;">
             <thead style="background-color: #07497c; color: white;">
                 <tr>
-                    <th class="text-center" colspan="4">Quản lý sản phẩm</th>
+                    <th class="text-center" colspan="5">Quản lý sản phẩm</th>
                 </tr>
-                <tr>        
+                <tr>  
+                    <th style="width: 100px;">Ảnh</th>      
                     <th>Tên</th>
                     <th style="text-align: left;">Giá</th>
-                    <th style="text-align: center;">Detail</th>
-                    <th class="text-center">Chi tiết</th>
+                    <th style="text-align: center;">Chi tiết</th>
+                    <th class="text-center">Hoạt động</th>
                 </tr>
             </thead>
             <tbody>
                 <% products.forEach(product => { %>
-                    <tr>
+                    <tr style="height: 75px;">
+                        <td style="width: 100px;">
+                            <div class="div-prd-admin">
+                                <img src="<%= product.image.replace('src/', '') %>" alt="">
+                            </div>
+                        </td>
                         <td><%= product.name %></td>
                         <td style="text-align: left;"><%= formatCurrency(product.price) %></td>
-                        <td class="flex justify-center items-center">
+                        <td class="text-center">
                             <a class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 
                             font-medium rounded-md text-sm px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 
                             dark:focus:ring-blue-800 h-10 flex items-center justify-center w-fit" href="/admin/product/show/<%= product.id %>">Chi tiết</a>
@@ -34,7 +40,7 @@
                                 dark:focus:ring-blue-800 h-10 flex items-center justify-center" href="/admin/product/<%= product.id %>/edit">Sửa</a>
                                 <a class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 
                                 font-medium rounded-md text-sm px-4 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 
-                                dark:focus:ring-red-900 h-10 flex items-center justify-center">Xóa</a>
+                                dark:focus:ring-red-900 h-10 flex items-center justify-center" href="/admin/product/<%= product.id %>/delete">Xóa</a>
                             </div>
                         </td>
                     </tr>

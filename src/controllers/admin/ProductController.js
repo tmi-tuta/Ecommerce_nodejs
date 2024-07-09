@@ -6,11 +6,12 @@ const Color = require('../../models/Color');
 const ImageProduct = require('../../models/ImageProduct');
 const ProductAttribute = require('../../models/ProductAttribute');
 const ProductColor = require('../../models/ProductColor');
+const EventProduct = require('../../models/EventProduct');
 
 const index = async(req, res) => {
     try {
         const products = await Product.find().populate([{path: 'brand_id'}, {path: 'type_id'}]).exec(); 
-        res.render('admin/product/index', { products: products, title: 'Products manager' });
+        res.render('admin/product/index', { products: products, title: 'Quản lý sản phẩm' });
     } catch (error) {
         console.error('Error retrieving products:', error);
         res.status(500).send('Internal Server Error');
@@ -20,9 +21,9 @@ const index = async(req, res) => {
 const create = async(req,res) => {
     const types = await Type.find(); 
     const brands = await Brand.find();  
-    const attributes = await Attribute.find();
+    const attributes = await Attribute.find().sort({ name: 1 });
     const colors = await Color.find();
-    res.render('admin/product/create', {types: types, brands: brands, attributes: attributes, colors: colors, title: 'Create Product'});
+    res.render('admin/product/create', {types: types, brands: brands, attributes: attributes, colors: colors, title: 'Tạo sản phẩm'});
 }
 
 const store =async(req, res) => {
@@ -86,7 +87,7 @@ const edit = async(req,res) => {
         brands: brands, 
         attributes: attributes, 
         colors: colors, 
-        title: 'Product edit'
+        title: 'Chỉnh sửa sản phẩm'
     });
 }
 
@@ -105,8 +106,27 @@ const show = async(req,res) => {
         images: images, 
         attributes: attributes, 
         colors: colors, 
-        title: 'Product detail'
+        title: 'Chi tiết sản phẩm'
     });
+}
+
+const destroy = async(req, res) => {
+    try {
+        const id = req.params.id;
+        const product = await Product.findByIdAndDelete(id);
+        if (!product) {
+            return res.status(404).json({
+                status: 'ERR',
+                message: 'Product not found.'
+            });
+        }
+        await ImageProduct.deleteMany({ product_id: id });
+        await EventProduct.deleteMany({ product_id: id });
+        res.redirect('/admin/product');
+    } catch (e) {
+        console.log(e);
+        res.status(400);
+    }
 }
 
 module.exports = {
@@ -116,4 +136,5 @@ module.exports = {
     edit,
     update,
     show,
+    destroy,
 };

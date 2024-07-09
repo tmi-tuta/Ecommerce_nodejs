@@ -22,19 +22,6 @@ const show = async(req,res) => {
     });
 }
 
-const productOfType = async(req, res) => {
-    var typeId = req.params.id;
-    const types = await Type.find(); 
-    const products = await Product.find({ type_id : typeId }).exec();
-    res.render('client/product/list_product', {
-        title: 'Home',
-        types: types, 
-        products: products,
-        layout: 'client/layout/main',
-    });
-}
-
 module.exports = {
     show,
-    productOfType,
 };
