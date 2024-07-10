@@ -115,3 +115,8 @@ padding-bottom: 100%;
     width: 60px;
     height: 60px;
 }
+
+.statistics-table td {
+    text-align: center !important;
+    width: 50% !important;
+}

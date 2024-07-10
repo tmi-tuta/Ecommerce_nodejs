@@ -1,2 +1,28 @@
-
-<h2 class="text-center">Admin Manager</h2>
+<div class="container mt-5">
+    <h1>Thống kê bán hàng</h1>
+    <form id="statistics-form">
+        <label for="period">Giai đoạn:</label>
+        <select id="period" name="period" class="form-select" required>
+            <option value="day">Ngày</option>
+            <option value="week">Tuần</option>
+            <option value="month">Tháng</option>
+            <option value="year">Năm</option>
+        </select>
+        <button type="submit" class="btn btn-primary mt-3">Số liệu thống kê</button>
+    </form>
+    <div id="statistics-result" class="mt-5">
+        <h2>Doanh thu bán hàng:</h2>
+        <table id="statistics-table" class="display statistics-table">
+            <thead>
+                <tr>
+                    <th class="text-center">Giai đoạn</th>
+                    <th class="text-center">Doanh thu</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be populated here by DataTables -->
+            </tbody>
+        </table>
+    </div>
+    <canvas id="revenueChart" class="mt-5"></canvas>
+</div>

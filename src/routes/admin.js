@@ -16,6 +16,7 @@ const BannerController = require('../controllers/admin/BannerController');
 const EventProductController = require('../controllers/admin/EventProductController');
 const WarehouseController = require('../controllers/admin/WarehouseController');
 const OrderController = require('../controllers/admin/OrderController');
+const StatisticController = require('../controllers/admin/StatisticController');
 const { ensureAuthenticatedAdmin } = require('../Middleware/auth');
 const passport = require('passport');
 const upload = require('../../src/Middleware/upload');
@@ -108,6 +109,8 @@ router.post('/warehouse/import/:id', ensureAuthenticatedAdmin, WarehouseControll
 
 router.get('/order', ensureAuthenticatedAdmin, OrderController.index);
 router.post('/order/:id/status', ensureAuthenticatedAdmin, OrderController.updateStatus);
+
+router.get('/sales-statistics', StatisticController.getSalesStatistics);
 
 module.exports = router
 

@@ -15,3 +15,17 @@
     color: red;
     cursor: pointer;
 }
+
+.search-option {
+    color: #7f7f7f;
+}
+
+.img-product {
+    border: 1px solid #7f7f7f;
+    min-height: 230px !important;
+    border-radius: 10px !important;
+}
+
+.bg-show-view {
+    border-radius: 10px !important;
+}

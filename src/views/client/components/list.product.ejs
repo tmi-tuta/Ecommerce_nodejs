@@ -6,13 +6,15 @@
                 <% products.forEach(product => { %>
                     <div class="bg-white rounded-lg shadow-lg p-8">
                         <a href="/heart/product/<%= product.id %>" class="bg-blue-600 text-white px-2 py-1 absolute top-0 left-0 text-xs  md:tex t-sm rounded-br-md">
-                            <i class="fa-solid fa-heart icon-heart"></i>
+                            <div class="icon-heart">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
                         </a>
                         <span class="bg-blue-600 text-white px-2 py-1 absolute top-0 right-0 text-xs  md:tex t-sm rounded-bl-md">
                             -0 %
                         </span>
                         <div class="relative overflow-hidden image-list-product">
-                            <img class="object-cover w-full h-full" src="<%= product.image.replace('src/', '') %>" alt="Product">
+                            <img class="object-cover w-full h-full img-product py-3" src="<%= product.image.replace('src/', '') %>" alt="Product">
                             <div class="absolute inset-0 bg-black opacity-40 bg-show-view d-none"></div>
                             <div class="absolute inset-0 flex items-center justify-center d-none btn-show-view">
                                 <a class="btn bg-white text-gray-900 py-2 px-6 rounded-full font-bold hover:bg-gray-300" href="/product/show/<%= product.id %>">

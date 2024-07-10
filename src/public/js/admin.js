@@ -14,6 +14,7 @@ $('.data-table').dataTable( {
   });
 
 const currentPath = window.location.pathname;
+let menuHone = $('.admin-home');
 let menuRole = $('.admin-role');
 let menuStaff = $('.admin-staff');
 let menuCustomer = $('.admin-customer');
@@ -29,6 +30,8 @@ let menuEvent = $('.admin-event');
 let menuWarehouse = $('.admin-warehouse');
 if (currentPath == '/admin/role') {
   menuRole.addClass('active');
+} else if (currentPath == '/admin/') {
+  menuHone.addClass('active');
 } else if (currentPath == '/admin/staff') {
   menuStaff.addClass('active');
 } else if (currentPath == '/admin/customers') {
@@ -154,4 +157,58 @@ $( '#multiple-select-products' ).select2( {
   width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
   placeholder: $( this ).data( 'placeholder' ),
   closeOnSelect: false,
+});
+
+$('#statistics-form').submit(async function(e) {
+  e.preventDefault();
+  const period = $('#period').val();
+
+  const response = await fetch(`/admin/sales-statistics?period=${period}`);
+  const data = await response.json();
+
+  const formatter = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND'
+  });
+
+  const formattedData = data.map(item => ({
+    _id: item._id,
+    totalRevenue: formatter.format(item.totalRevenue)
+  }));
+
+  // Populate DataTables
+  $('#statistics-table').DataTable({
+      destroy: true, // Destroy the existing table
+      data: formattedData,
+      columns: [
+          { data: '_id' },
+          { data: 'totalRevenue' }
+      ]
+  });
+
+  // Populate Chart.js
+  const ctx = document.getElementById('revenueChart').getContext('2d');
+  const labels = data.map(item => item._id);
+  const revenueData = data.map(item => item.totalRevenue);
+
+  new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: labels, 
+          datasets: [{
+              label: 'Doanh thu',
+              data: revenueData,
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
 });

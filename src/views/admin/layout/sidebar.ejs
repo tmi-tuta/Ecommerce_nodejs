@@ -5,6 +5,9 @@
     </div>
     <div class="offcanvas-body">
         <ul class="pl-0">
+            <li class="text-center d-flex items-center justify-start h-10 item-menu admin-home">
+                <a class="px-2" href="/admin/">Trang chủ</a>
+            </li>
             <% if (userLogged && userLogged.user_role == 1) { %>
                 <li class="text-center d-flex items-center justify-start h-10 item-menu admin-role">
                     <a class="px-2" href="/admin/role">Quản lí quyền</a>
