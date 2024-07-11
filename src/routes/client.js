@@ -29,5 +29,6 @@ router.get('/heart/product/:id', ensureAuthenticated, HeartController.store);
 router.get('/heart/:id/delete', ensureAuthenticated, HeartController.destroy);
 
 router.get('/order/index', ensureAuthenticated, OrderController.index);
+router.post('/order/:id/status', ensureAuthenticated, OrderController.updateStatus);
 module.exports = router
 

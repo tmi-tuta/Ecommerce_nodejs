@@ -21,6 +21,10 @@ const orderSchema = new Schema({
     type: Number,
     required: true
   },
+  payment_status: {
+    type: Number,
+    default: 0,
+  },
   status: {
     type: Number,
     default: statusOrder.unconfirmed,

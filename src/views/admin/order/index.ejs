@@ -45,15 +45,29 @@
                             <% }) %>
                         </td>
                         <td style="width: 100px;" class="text-center">
-                            <form action="/admin/order/<%= order._id %>/status" method="post">
                                 <% if (order.status == 1) { %>
-                                    <input type="hidden" name="status" value="2">
-                                    <button class="btn btn-primary">Xác nhận</button>
+                                    <form class="mb-2" action="/admin/order/<%= order._id %>/status" method="post">
+                                        <input type="hidden" name="status" value="0">
+                                        <button type="submit" class="btn btn-danger" style="background-color: red;">Hủy đơn hàng</button>
+                                    </form>
+                                    <form action="/admin/order/<%= order._id %>/status" method="post">
+                                        <input type="hidden" name="status" value="2">
+                                        <button type="submit" class="btn btn-primary">Xác nhận</button>
+                                    </form>
                                 <% } else if (order.status == 2) { %>
-                                    <input type="hidden" name="status" value="3">
-                                    <button class="btn btn-primary">Giao vận chuyển</button>
+                                    <form class="mb-5" action="/admin/order/<%= order._id %>/status" method="post">
+                                        <input type="hidden" name="status" value="3">
+                                        <button class="btn btn-primary">Giao vận chuyển</button>
+                                    </form>
+                                <% } else if (order.status == 3) { %>
+                                    <span>Đã vận chuyển</span>
+                                <% } else if (order.status == 4) { %> 
+                                    <span>Đã nhận hàng</span>
+                                <% } else if (order.status == 5) { %> 
+                                    <span>Đơn bi hoàn</span>
+                                <% } else if (order.status == 0) { %> 
+                                    <span>Đã hủy</span>
                                 <% } %>
-                            </form>
                         </td>
                     </tr>
                 <% }) %>

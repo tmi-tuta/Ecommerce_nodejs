@@ -26,7 +26,7 @@
                           <label class="product_text" for="price"><%= attributeProduct.attribute_id.name %>:</label>
                           <p class="text-[#333] product_text" id="price"><%= attributeProduct.attribute_id.description %></p>
                         </div>
-                        <hr>
+                        <!-- <hr> -->
                     <% }) %>
                     <div class="product_text">
                         <p><%= product.description %></p>
@@ -64,7 +64,7 @@
 
                             <div class="product_price"><%= formatCurrency(product.price) %></div>
                             <div class="button_container">
-                                <button type="button" class="button cart_button">Add to Cart</button>
+                                <button type="button" class="button cart_button add-cart" data-id="<%= product.id %>">Add to Cart</button>
                                 <div class="product_fav"><i class="fas fa-heart"></i></div>
                             </div>
                             

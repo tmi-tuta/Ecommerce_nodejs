@@ -12,6 +12,7 @@
                             <th style="width: 100px;" class="text-center">Tổng số lượng</th>
                             <th style="width: 100px;" class="text-center">Trạng thái</th>
                             <th style="width: 100px;" class="text-center">Chi tiết</th>
+                            <th style="width: 100px;" class="text-center">Thanh toán</th>
                             <th style="width: 100px;" class="text-center">Hoạt động</th>
                         </tr>
                     </thead>
@@ -43,11 +44,34 @@
                                     <% }) %>
                                 </td>
                                 <td style="width: 100px;" class="text-center">
-                                    <% if (order.status == 1) { %>
-                                        <button class="btn btn-danger">Hủy đơn hàng</button>
-                                    <% } else if (order.status == 3) { %>
-                                        <button class="btn btn-primary">Đã nhận hàng</button>
+                                    <% if (order.payment_status == 0) { %>
+                                        <span>Chưa thanh toán</span>
+                                    <% } else { %>
+                                        <span>Đã thanh toán</span>
                                     <% } %>
+                                </td>
+                                <td style="width: 100px;" class="text-center">
+                                        <% if (order.status == 1) { %>
+                                            <form action="/order/<%= order._id %>/status" method="post">
+                                                <input type="hidden" name="payment_status" value="0">
+                                                <input type="hidden" name="status" value="0">
+                                                <button type="submit" class="btn btn-danger" style="background-color: red;">Hủy đơn hàng</button>
+                                            </form>
+                                        <% } else if (order.status == 2) { %>
+                                            <span>Đã xác nhận</span>
+                                        <% } else if (order.status == 3) { %>
+                                            <form action="/order/<%= order._id %>/status" method="post">
+                                                <input type="hidden" name="payment_status" value="1">
+                                                <input type="hidden" name="status" value="4">
+                                                <button type="submit" class="btn btn-primary">Đã nhận hàng</button>
+                                            </form>
+                                        <% } else if (order.status == 4) { %> 
+                                            <span>Đã hoàn thành</span>  
+                                        <% } else if (order.status == 5) { %> 
+                                            <span>Đơn bi hoàn</span> 
+                                        <% } else if (order.status == 0) { %> 
+                                            <span>Đã hủy</span> 
+                                        <% } %>
                                 </td>
                             </tr>
                         <% }) %>

@@ -18,6 +18,9 @@
 
 .search-option {
     color: #7f7f7f;
+    position: fixed;
+    right: 45px !important;
+    border-bottom: 0px !important;
 }
 
 .img-product {
@@ -29,3 +32,4 @@
 .bg-show-view {
     border-radius: 10px !important;
 }
+

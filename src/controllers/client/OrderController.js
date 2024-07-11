@@ -12,6 +12,19 @@ const index = async(req, res) => {
         layout: 'client/layout/main' });
 }
 
+const updateStatus = async(req, res) => {
+    try {
+        const { status, payment_status } = req.body;
+        const id = req.params.id;
+        const statusOrder = await Order.findByIdAndUpdate(id, { payment_status: payment_status, status: status }, { new: true });
+        res.redirect('back');
+    } catch (e) {
+        console.log(e);
+        res.status(400);
+    }
+}
+
 module.exports = {
-    index
+    index,
+    updateStatus
 };
