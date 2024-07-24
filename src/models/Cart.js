@@ -49,7 +49,11 @@ module.exports = function Cart(oldCart) {
       let oldQty = storeItem.qty;
       storeItem.qty = itemQty;
       storeItem.price = storeItem.item.price * storeItem.qty;
-      storeItem.images = storeItem.item.images[0];
+      if (Array.isArray(storeItem.item.images) && storeItem.item.images.length > 0) {
+        storeItem.images = storeItem.item.images[0];
+      } else {
+        storeItem.images = '';
+      }
       this.totalQty += itemQty - oldQty;
       this.totalPrice += storeItem.price - storeItem.item.price * oldQty;
     };

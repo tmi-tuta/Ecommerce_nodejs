@@ -137,24 +137,28 @@ const mergeCart = async(req, res, next) => {
 }
 
 const modifyCart = async(req, res, next) => {
-  var prodId = req.query.id;
-  var qty = req.query.qty;
-  if (qty == 0) {
-    return res.redirect("back");
-  }
-  var cart = new Cart(req.session.cart ? req.session.cart : {});
-  await Product.findById(prodId, (err, product) => {
-    if (err) {
+  try {
+    var prodId = req.query.id;
+    var qty = req.query.qty;
+    if (qty == 0) {
+      return res.redirect("back");
+    }
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+    const product = await Product.findById(prodId);
+    if (!product) {
       return res.redirect("back");
     }
     cart.changeQty(product, prodId, qty);
     req.session.cart = cart;
     if (req.user) {
       req.user.cart = cart;
-      req.user.save();
+      await req.user.save();
     }
     res.redirect("back");
-  });
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
 };
 
 module.exports = {

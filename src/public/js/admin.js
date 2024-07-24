@@ -212,3 +212,8 @@ $('#statistics-form').submit(async function(e) {
       }
   });
 });
+
+$('.thumbnail').click(function() {
+  var newSrc = $(this).attr('src');
+  $('#mainImage').attr('src', newSrc);
+});

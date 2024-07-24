@@ -5,15 +5,22 @@
             <!-- Images -->
             <div class="col-lg-2 order-lg-1 order-2">
                 <ul class="image_list">
+                    <li>
+                        <img class="thumbnail" src="<%= product.image.replace('src/', '') %>" alt="">
+                    </li>
                     <% images.forEach(subImage => { %>
-                    <li data-image="<%= subImage.image.replace('src/', '') %>"><img src="<%= subImage.image.replace('src/', '') %>" alt=""></li>
+                        <li>
+                            <img class="thumbnail" src="<%= subImage.image.replace('src/', '') %>" alt="">
+                        </li>
                     <% }) %>
                 </ul>
             </div>
 
             <!-- Selected Image -->
             <div class="col-lg-5 order-lg-2 order-1">
-                <div class="image_selected"><img src="<%= product.image.replace('src/', '') %>" alt=""></div>
+                <div class="image_selected">
+                    <img class="mainImage" src="<%= product.image.replace('src/', '') %>" alt="">
+                </div>
             </div>
 
             <!-- Description -->
@@ -64,7 +71,9 @@
 
                             <div class="product_price"><%= formatCurrency(product.price) %></div>
                             <div class="button_container">
-                                <button type="button" class="button cart_button add-cart" data-id="<%= product.id %>">Add to Cart</button>
+                                <button type="button" class="button cart_button add-cart" data-id="<%= product.id %>">
+                                    Thêm vào giỏ hàng
+                                </button>
                                 <div class="product_fav"><i class="fas fa-heart"></i></div>
                             </div>
                             

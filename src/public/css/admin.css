@@ -120,3 +120,25 @@ padding-bottom: 100%;
     text-align: center !important;
     width: 50% !important;
 }
+
+.main-image {
+    max-width: 80%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+.thumbnail {
+max-width: 100px;
+cursor: pointer;
+border-radius: 10px;
+object-fit: cover;
+}
+.thumbnail:hover {
+border: 2px solid #0651ed;
+}
+
+.div-image-prd-detail {
+    aspect-ratio: 1.91 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -114,9 +114,9 @@
 <div class="product-list">
     <% for (let eventId in groupedByEvent) { %>
         <% let eventGroup = groupedByEvent[eventId]; %>
-        <div class="bg-gray-900 py-16">
+        <div class="container-product py-16">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-white mb-8"><%= eventGroup.event.title %></h2>
+                <h2 class="text-3xl font-bold text-black mb-8"><%= eventGroup.event.title %></h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <% eventGroup.products.forEach(product => { %>
                         <div class="bg-white rounded-lg shadow-lg p-8">
@@ -142,7 +142,9 @@
                             <div class="text-center mt-4">
                                 <div class="text-gray-900 font-bold text-lg line-through"><%= formatCurrency(product.price) %></div>
                                 <div class="text-gray-900 font-bold text-lg"><%= formatNewCurrency(product.price, eventGroup.event.discount) %></div>
-                                <button class="bg-gray-900 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 add-cart" data-id="<%= product.id %>">Add to Cart</button>
+                                <button class="bg-gray-900 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 add-cart" data-id="<%= product.id %>">
+                                    Thêm vào giỏ hàng
+                                </button>
                             </div>
                         </div>
                     <% }) %>

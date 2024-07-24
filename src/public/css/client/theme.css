@@ -15879,7 +15879,7 @@ html.edge .tt-portfolio-content figure:hover figcaption {
     width: 49px;
     height: 100%;
     text-align: center;
-    top: 0;
+    top: 13px;
     color: #777777; }
   .tt-input-counter.style-01 span:hover {
     color: #191919; }
@@ -15893,10 +15893,10 @@ html.edge .tt-portfolio-content figure:hover figcaption {
     font-family: "wokiee";
     font-size: 12px;
     line-height: 50px; }
-  .tt-input-counter.style-01 .minus-btn:before {
+  /* .tt-input-counter.style-01 .minus-btn:before {
     content: "\e9b2"; }
   .tt-input-counter.style-01 .plus-btn:before {
-    content: "\e9b1"; }
+    content: "\e9b1"; } */
 
 /* tt-collapse-block */
 .tt-collapse-block .tt-item .tt-collapse-title {

@@ -22,11 +22,9 @@ const passport = require('passport');
 const upload = require('../../src/Middleware/upload');
 
 router.get('/', HomeController.index);
-router.get('/register', (req, res) => {
-    res.render('admin/auth/register', { title: 'Register', layout: 'admin/layout/auth' });
-});
-
+router.get('/register', RegisterController.create);
 router.post('/register', RegisterController.store);
+
 router.get('/login', (req, res) => {
     res.render('admin/auth/login', { title: 'Login', layout: 'admin/layout/auth' });
 });

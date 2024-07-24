@@ -1,5 +1,9 @@
 const UserService = require('../../../services/UserService')
 
+const create = async(req, res) => {
+    res.render('admin/auth/register', { title: 'Đăng ký', layout: 'admin/layout/auth' });
+};
+
 const store = async(req, res) => {
     try {
         const { name, email, password, confirmPassword, phone } = req.body;
@@ -22,7 +26,7 @@ const store = async(req, res) => {
             });
         }
         const services = await UserService.createUser(req.body);
-        res.redirect('/login');
+        res.redirect('/admin/login');
     } catch (e) {
         console.log(e);
         return res.status(404).json({
@@ -32,5 +36,6 @@ const store = async(req, res) => {
 }
 
 module.exports = {
+    create,
     store
 };

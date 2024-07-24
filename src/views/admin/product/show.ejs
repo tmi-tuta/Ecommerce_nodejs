@@ -1,63 +1,46 @@
-<div class="font-sans bg-white">
-  <div class="p-6 lg:max-w-7xl max-w-4xl mx-auto">
-    <div class="grid items-start grid-cols-1 lg:grid-cols-5 gap-12 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] p-6">
-      <div class="lg:col-span-3 w-full lg:sticky top-0 text-center">
-
-        <div class="px-4 py-10 rounded-xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] relative">
-          <div class="div-image flex items-center justify-center rounded" style="background-color: #dfdfdf;"> 
-            <img src="<%= product.image.replace('src/', '') %>" alt="Product" class="w-4/5 rounded object-cover" />
-          </div>
-        </div>
-
-        <div class="mt-6 flex flex-wrap justify-center gap-6 mx-auto">
-          <% images.forEach(subImage => { %>
-            <div class="div-image flex items-center justify-center rounded" style="background-color: #dfdfdf;">
-              <img src="<%= subImage.image.replace('src/', '') %>" alt="Product2" class="w-24 cursor-pointer rounded" />
-            </div>
-          <% }) %>
-        </div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-7 text-center mb-4">
+      <div class="border p-3 rounded div-image-prd-detail">
+        <img id="mainImage" src="<%= product.image.replace('src/', '') %>" alt="Product" class="main-image">
       </div>
-
-      <div class="lg:col-span-2">
-        <h2 class="text-2xl font-extrabold text-[#333]"><%= product.name %> | <%= product.type_id.name %></h2>
-        <div class="flex flex-wrap gap-4 mt-4">
-          <label class="text-xl" for="price">Giá:</label>
-          <p class="text-[#333] text-xl" id="price"><%= formatCurrency(product.price) %></p>
+      <div class="d-flex justify-content-center mt-3">
+        <div class="p-2">
+          <img src="<%= product.image.replace('src/', '') %>" alt="Product2" class="thumbnail">
         </div>
-        <hr>
-        <p class="text-[#333] text-2xl font-bold">Infomation</p>
-        <div class="flex flex-wrap gap-4">
-          <label class="text-xl" for="price">Loại:</label>
-          <% if (product.type_id) { %>
-            <p class="text-[#333] text-xl" id="price"><%= product.type_id.name %></p>
-          <% } %>
-        </div>
-        <hr>
-        <div class="flex flex-wrap gap-4">
-          <label class="text-xl" for="price">Thương hiệu:</label>
-          <% if (product.brand_id) { %>
-            <p class="text-[#333] text-xl" id="price"><%= product.brand_id.name %></p>
-          <% } %>
-        </div>
-        <hr>
-        <% attributes.forEach(attributeProduct => { %>
-          <div class="flex flex-wrap gap-4">
-            <label class="text-xl" for="price"><%= attributeProduct.attribute_id.name %>:</label>
-            <p class="text-[#333] text-xl" id="price"><%= attributeProduct.attribute_id.description %></p>
+        <% images.forEach(subImage => { %>
+          <div class="p-2">
+            <img src="<%= subImage.image.replace('src/', '') %>" alt="Product2" class="thumbnail">
           </div>
-          <hr>
         <% }) %>
-        <div class="flex items-center justify-start gap-2 mt-2">
-          <% colors.forEach(color => { %>
-            <input type="color" value="<%= color.color_id.color %>">
-          <% }) %>
-        </div>
       </div>
     </div>
-    <hr>
-    <div class="mt-3 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] px-6">
-      <h2 class="text-2xl font-extrabold text-[#333]">Miêu tả</h2>
-      <p class="text-[#333] text-xl" id="price"><%= product.description %></p>
+    <div class="col-lg-5">
+      <h2 class="fw-bold"><%= product.name %> | <%= product.type_id.name %></h2>
+      <div class="mt-4">
+        <h5 class="font-weight-bold">Giá:</h5>
+        <p><%= formatCurrency(product.price) %></p>
+      </div>
+      <hr>
+      <div class="mt-3">
+        <h5 class="fw-bold">Thông tin chi tiết</h5>
+        <p><strong>Loại:</strong> <%= product.type_id ? product.type_id.name : '' %></p>
+        <p><strong>Thương hiệu:</strong> <%= product.brand_id ? product.brand_id.name : '' %></p>
+        <% attributes.forEach(attributeProduct => { %>
+          <p><strong><%= attributeProduct.attribute_id.name %>:</strong> <%= attributeProduct.attribute_id.description %></p>
+        <% }) %>
+        <div>
+          <strong>Màu sắc:</strong>
+          <% colors.forEach(color => { %>
+            <input type="color" value="<%= color.color_id.color %>" disabled>
+          <% }) %>
+        </div>
+      </div>
+      <hr>
+      <div class="mt-3">
+        <h5 class="fw-bold">Miêu tả</h5>
+        <p><%= product.description %></p>
+      </div>
     </div>
   </div>
 </div>
