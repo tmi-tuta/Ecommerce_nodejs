@@ -84,4 +84,23 @@
 
         </div>
     </div>
+    <hr>
+    <div id="reviews">
+        <% reviews.forEach(review => { %>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p class="card-text"><strong>Đánh giá:</strong> <%= review.rating %> sao</p>
+                    <p class="card-text"><strong>Bình luận:</strong> <%= review.comment %></p>
+                    <p class="card-text"><small class="text-muted">Ngày đánh giá: <%= review.formatted_date %></small></p>
+                    
+                    <% review.replies.forEach(reply => { %>
+                        <div class="alert alert-secondary" role="alert">
+                            <strong>Admin:</strong> <%= reply.comment %> <br>
+                            <small class="text-muted">Ngày trả lời: <%= reply.formatted_date %></small>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        <% }) %>
+    </div>
 </div>

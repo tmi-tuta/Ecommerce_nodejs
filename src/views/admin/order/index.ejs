@@ -39,9 +39,9 @@
                         </td>
                         <td class="text-left" style="width: 100px;">
                             <% Object.entries(order.cart.items).forEach(([key, item]) => { %>
-                                <div>Name: <%= item.item.name %></div>
-                                <div>Quantity: <%= item.qty %></div>
-                                <div style="border-bottom: 1px solid gray;">Price: <%= formatCurrency(item.price) %></div>
+                                <div>Sản phẩm: <%= item.item.name %></div>
+                                <div>Số lượng: <%= item.qty %></div>
+                                <div style="border-bottom: 1px solid gray;">Giá: <%= formatCurrency(item.price) %></div>
                             <% }) %>
                         </td>
                         <td style="width: 100px;" class="text-center">
