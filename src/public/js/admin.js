@@ -28,6 +28,7 @@ let menuVoucher = $('.admin-voucher');
 let menuBanner = $('.admin-banner');
 let menuEvent = $('.admin-event');
 let menuWarehouse = $('.admin-warehouse');
+let menuReview = $('.admin-review');
 if (currentPath == '/admin/role') {
   menuRole.addClass('active');
 } else if (currentPath == '/admin/') {
@@ -56,6 +57,8 @@ if (currentPath == '/admin/role') {
   menuWarehouse.addClass('active');
 } else if (currentPath == '/admin/attribute') {
   menuAttribute.addClass('active');
+} else if (currentPath == '/admin/reviews') {
+  menuReview.addClass('active');
 } else {
   $('.item-menu').removeClass('active');
 }
@@ -216,4 +219,31 @@ $('#statistics-form').submit(async function(e) {
 $('.thumbnail').click(function() {
   var newSrc = $(this).attr('src');
   $('#mainImage').attr('src', newSrc);
+});
+
+// Form reply review
+$('.replyForm').submit(function(event) {
+  event.preventDefault();
+
+  var form = $(this);
+  var reviewId = form.find('input[name="reviewId"]').val();
+  var replyComment = form.find('textarea[name="replyComment"]').val();
+  var formData = {
+      reviewId: reviewId,
+      comment: replyComment
+  };
+  $.ajax({
+      url: '/admin/reviews/' + reviewId + '/replies',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(formData),
+      success: function(response) {
+          alert('Trả lời của bạn đã được gửi thành công!');
+          location.reload();
+      },
+      error: function(xhr, status, error) {
+          console.error('Error:', error);
+          alert('Đã xảy ra lỗi. Vui lòng thử lại.', error);
+      }
+  });
 });

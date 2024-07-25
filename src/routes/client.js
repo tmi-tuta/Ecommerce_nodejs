@@ -5,6 +5,7 @@ const ProductController = require('../controllers/client/ProductController');
 const AuthenController = require('../controllers/client/AuthenController');
 const HeartController = require('../controllers/client/HeartController');
 const OrderController = require('../controllers/client/OrderController');
+const ReviewController = require('../controllers/client/ReviewController');
 const passport = require('passport');
 const { ensureAuthenticated } = require('../Middleware/auth');
 
@@ -30,5 +31,8 @@ router.get('/heart/:id/delete', ensureAuthenticated, HeartController.destroy);
 
 router.get('/order/index', ensureAuthenticated, OrderController.index);
 router.post('/order/:id/status', ensureAuthenticated, OrderController.updateStatus);
+
+router.get('/review/create', ensureAuthenticated, ReviewController.create);
+router.post('/review/store', ensureAuthenticated, ReviewController.store);
 module.exports = router
 

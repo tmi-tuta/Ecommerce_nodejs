@@ -66,7 +66,9 @@
                                                 <button type="submit" class="btn btn-primary">Đã nhận hàng</button>
                                             </form>
                                         <% } else if (order.status == 4) { %> 
-                                            <span>Đã hoàn thành</span>  
+                                            <span>Đã hoàn thành</span> 
+                                            <br> 
+                                            <a href="/review/create" class="btn btn-primary">Đánh giá</a>
                                         <% } else if (order.status == 5) { %> 
                                             <span>Đơn bi hoàn</span> 
                                         <% } else if (order.status == 0) { %> 

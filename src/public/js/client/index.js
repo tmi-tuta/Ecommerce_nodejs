@@ -66,3 +66,30 @@ $('.thumbnail').click(function() {
   var newSrc = $(this).attr('src');
   $('.mainImage').attr('src', newSrc);
 });
+
+$('#reviewForm').submit(function(event) {
+  event.preventDefault();
+
+  var product_id = $('#product_id').val();
+  var rating = $('#rating').val();
+  var comment = $('#comment').val();
+  var formData = {
+      product_id: product_id,
+      rating: rating,
+      comment: comment
+  };
+  $.ajax({
+      url: '/review/store',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(formData),
+      success: function(response) {
+          alert('Đánh giá của bạn đã được gửi thành công!');
+          $('#reviewForm')[0].reset(); 
+      },
+      error: function(xhr, status, error) {
+          console.error('Error:', error);
+          alert('Đã xảy ra lỗi. Vui lòng thử lại.');
+      }
+  });
+});

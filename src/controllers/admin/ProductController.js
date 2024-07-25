@@ -92,7 +92,63 @@ const edit = async(req,res) => {
 }
 
 const update =async(req, res) => {
-
+    try {
+        const { name, price, description, brand_id, type_id } = req.body;
+        const attributeIds = req.body.attribute_id || [];
+        const colorIds = req.body.color_id || [];
+    
+        // Xử lý hình ảnh chính
+        const image = req.files['image'] ? req.files['image'][0].path.replace('public', '') : '';
+    
+        // Xử lý hình ảnh phụ
+        const sub_images = req.files['sub_image'] ? req.files['sub_image'].map(file => file.path.replace('public', '')) : [];
+    
+        // Cập nhật sản phẩm
+        const updatedProduct = await Product.findByIdAndUpdate(
+            req.params.productId,  // ID sản phẩm từ tham số URL
+            {
+                name: name,
+                price: price,
+                description: description,
+                brand_id: brand_id,
+                type_id: type_id,
+                image: image,
+            },
+            { new: true }  // Trả về đối tượng đã được cập nhật
+        );
+    
+        if (!updatedProduct) {
+            return res.status(404).redirect('/admin/product/');
+        }
+        // Xóa hình ảnh phụ cũ
+        await ImageProduct.deleteMany({ product_id: updatedProduct._id });
+        // Lưu hình ảnh phụ mới
+        for (const sub_image of sub_images) {
+            await ImageProduct.create({
+                product_id: updatedProduct._id,
+                image: sub_image,
+            });
+        }
+        await ProductAttribute.deleteMany({ product_id: updatedProduct._id });
+        for (const attributeId of attributeIds) {
+            await ProductAttribute.create({
+                attribute_id: attributeId,
+                product_id: updatedProduct._id,
+            });
+        }
+        await ProductColor.deleteMany({ product_id: updatedProduct._id });
+        for (const colorId of colorIds) {
+            await ProductColor.create({
+                color_id: colorId,
+                product_id: updatedProduct._id,
+            });
+        }
+        res.redirect('/admin/product/');
+    } catch (error) {
+        console.log(error);
+        res.redirect('/admin/product/');
+    }
+    
 }
 
 const show = async(req,res) => {

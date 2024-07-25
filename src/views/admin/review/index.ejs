@@ -1,0 +1,35 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <h2 class="mb-4">Danh sách đánh giá sản phẩm</h2>
+            <div id="reviews">
+                <% reviews.forEach(review => { %>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Sản phẩm: <%= review.product_id.name %></h5>
+                        <p class="card-text"><strong>Đánh giá:</strong> <%= review.rating %> sao</p>
+                        <p class="card-text"><strong>Bình luận:</strong> <%= review.comment %></p>
+                        <p class="card-text"><small class="text-muted">Ngày đánh giá: <%= review.formatted_date %></small></p>
+                        
+                        <% review.replies.forEach(reply => { %>
+                            <div class="alert alert-secondary" role="alert">
+                                <strong>Admin:</strong> <%= reply.comment %> <br>
+                                <small class="text-muted">Ngày trả lời: <%= reply.formatted_date %></small>
+                            </div>
+                        <% }) %>
+
+                        <form class="replyForm">
+                            <div class="form-group">
+                                <label for="replyComment">Trả lời</label>
+                                <textarea class="form-control" name="replyComment" rows="2" placeholder="Nhập trả lời của bạn" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-2">Gửi trả lời</button>
+                            <input type="hidden" name="reviewId" value="<%= review._id %>">
+                        </form>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
