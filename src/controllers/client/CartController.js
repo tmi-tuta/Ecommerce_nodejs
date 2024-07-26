@@ -2,6 +2,7 @@ const Type = require('../../models/Type');
 const Cart = require("../../models/Cart");
 const Product = require("../../models/Product");
 const Order = require("../../models/Order");
+var nodemailer = require('nodemailer');
 
 const getCart = async(req,res) => {
     const types = await Type.find(); 
@@ -109,6 +110,31 @@ const postAddOrder = async (req, res, next) => {
       }
 
       await order.save();
+            // Set up Nodemailer transport
+            let transporter = nodemailer.createTransport({
+              service: 'gmail', // You can use other email services
+              auth: {
+                user: 'techbeen04072001@gmail.com', // Your email
+                pass: 'TechBeen@#04072001' // Your email password
+              }
+            });
+      
+            // Email options
+            let mailOptions = {
+              from: 'techbeen04072001@gmail.com',
+              to: 'tmi.tutaa@gmail.com',
+              subject: 'Xác nhận đơn hàng',
+              text: `Bạn đã có một đơn hàng mới ! Mã đơn hàng của bạn là ${order._id}`
+            };
+
+            // Send email
+            transporter.sendMail(mailOptions, (error, info) => {
+              if (error) {
+                console.log(error);
+              } else {
+                console.log('Email sent: ' + info.response);
+              }
+            });
       req.flash("message", "Bạn đã đặt hàng thành công!");
       req.session.cart = null;
       req.user.cart = {};
