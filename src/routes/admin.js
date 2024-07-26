@@ -105,6 +105,7 @@ router.get('/warehouse/create', ensureAuthenticatedAdmin, WarehouseController.cr
 router.post('/warehouse/store', ensureAuthenticatedAdmin, WarehouseController.store)
 router.get('/warehouse/show/:id', ensureAuthenticatedAdmin, WarehouseController.show);
 router.post('/warehouse/import/:id', ensureAuthenticatedAdmin, WarehouseController.inport);
+router.get('/warehouse/getWarehouseData', ensureAuthenticatedAdmin, WarehouseController.getWarehouseData);
 
 router.get('/order', ensureAuthenticatedAdmin, OrderController.index);
 router.post('/order/:id/status', ensureAuthenticatedAdmin, OrderController.updateStatus);

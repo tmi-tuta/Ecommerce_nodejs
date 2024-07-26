@@ -247,3 +247,38 @@ $('.replyForm').submit(function(event) {
       }
   });
 });
+
+// Get Warehouse data
+$.ajax({
+  url: '/admin/warehouse/getWarehouseData',
+  method: 'GET',
+  success: function(data) {
+      const productNames = data.map(item => item.product_id.name);
+      const quantities = data.map(item => item.quantity);
+
+      const ctx = document.getElementById('warehouseChart').getContext('2d');
+      const warehouseChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: productNames,
+              datasets: [{
+                  label: 'Số lượng',
+                  data: quantities,
+                  backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                  borderColor: 'rgba(75, 192, 192, 1)',
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+          }
+      });
+  },
+  error: function(err) {
+      console.error(err);
+  }
+});

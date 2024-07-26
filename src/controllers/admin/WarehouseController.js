@@ -49,7 +49,7 @@ const show = async(req,res) => {
     id = req.params.id;
     const wareHouseins = await WareHouseIn.find({ warehouse_id : id }).populate(['user_id', 'warehouse_id']).exec(); 
     res.render('admin/warehouse/show', {
-        title: 'Warehouse detail', 
+        title: 'Quản lý kho', 
         wareHouseins: wareHouseins
     });
 }
@@ -75,10 +75,20 @@ const inport = async(req, res) => {
     }
 };
 
+const getWarehouseData = async(req, res) => {
+    try {
+        const data = await WareHouse.find().populate('product_id');
+        res.json(data);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+}
+
 module.exports = {
     index,
     create,
     store,
     show,
     inport,
+    getWarehouseData,
 };
