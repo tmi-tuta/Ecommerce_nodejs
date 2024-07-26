@@ -3,7 +3,11 @@ const Brand = require('../../models/Brand');
 const index = async(req, res) => {
     try {
         const brands = await Brand.find(); 
-        res.render('admin/brand/index', { brands: brands, title: 'Quản lý thương hiệu' });
+        res.render('admin/brand/index', { 
+            brands: brands, 
+            title: 'Quản lý thương hiệu',
+            message: req.flash('message'),
+        });
     } catch (error) {
         console.error('Error retrieving types:', error);
         res.status(500).send('Internal Server Error');
@@ -11,7 +15,7 @@ const index = async(req, res) => {
 }
 
 const create = (req,res) => {
-    res.render('admin/brand/create', { title: 'Thêm thương hiệu'});
+    res.render('admin/brand/create', { title: 'Thêm thương hãng'});
 }
 
 const store = async(req, res) => {
@@ -28,6 +32,7 @@ const store = async(req, res) => {
             location: location,
             description: description
         });
+        req.flash('message', 'Thêm thành công.');
         res.redirect('/admin/brand');
     } catch (e) {
         console.log(e);
@@ -38,7 +43,7 @@ const store = async(req, res) => {
 const edit = async(req,res) => {
     id = req.params.id;
     const brand = await Brand.findOne({ _id: id })
-    res.render('admin/brand/edit', { title: 'Edit Brand', brand: brand});
+    res.render('admin/brand/edit', { title: 'Chỉnh sửa hãng', brand: brand});
 }
 
 const update = async(req, res) => {
@@ -52,6 +57,7 @@ const update = async(req, res) => {
             });
         }
         const updateBrand = await Brand.findByIdAndUpdate(id, { name, location, description }, { new: true });
+        req.flash('message', 'Cập nhật thành công.');
         res.redirect('/admin/brand');
     } catch (e) {
         console.log(e);
@@ -69,6 +75,7 @@ const destroy = async(req, res) => {
                 message: 'Brand not found.'
             });
         }
+        req.flash('message', 'Xóa thành công.');
         res.redirect('/admin/brand');
     } catch (e) {
         console.log(e);

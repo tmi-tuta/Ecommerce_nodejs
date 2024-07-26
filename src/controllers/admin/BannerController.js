@@ -3,7 +3,11 @@ const Banner = require('../../models/Banner');
 const index = async(req, res) => {
     try {
         const banners = await Banner.find(); 
-        res.render('admin/banner/index', { banners: banners, title: 'Banner manager' });
+        res.render('admin/banner/index', { 
+            banners: banners, 
+            title: 'Quản lý banner',
+            message: req.flash('message'),
+         });
     } catch (error) {
         console.error('Error retrieving banners:', error);
         res.status(500).send('Internal Server Error');
@@ -11,7 +15,7 @@ const index = async(req, res) => {
 }
 
 const create = (req,res) => {
-    res.render('admin/banner/create', { title: 'Add new banner'});
+    res.render('admin/banner/create', { title: 'Thêm mới banner'});
 }
 
 const store =async(req, res) => {
@@ -28,6 +32,7 @@ const store =async(req, res) => {
             title: title,
             image: image
         });
+        req.flash('message', 'Thêm thành công.');
         res.redirect('/admin/banner/');
     } catch (error) {
         console.log(error);
@@ -38,7 +43,7 @@ const store =async(req, res) => {
 const edit = async(req,res) => {
     id = req.params.id;
     const banner = await Banner.findOne({ _id: id })
-    res.render('admin/banner/edit', { title: 'Edit banner', banner: banner });
+    res.render('admin/banner/edit', { title: 'Chỉnh sửa banner', banner: banner });
 }
 
 const update = async(req, res) => {
@@ -53,6 +58,7 @@ const update = async(req, res) => {
             });
         }
         const updateBanner = await Banner.findByIdAndUpdate(id, { title, image }, { new: true });
+        req.flash('message', 'Cập nhật thành công.');
         res.redirect('/admin/banner/');
     } catch (e) {
         console.log(e);
@@ -70,6 +76,7 @@ const destroy = async(req, res) => {
                 message: 'Banner not found.'
             });
         }
+        req.flash('message', 'Xóa thành công.');
         res.redirect('/admin/banner');
     } catch (e) {
         console.log(e);

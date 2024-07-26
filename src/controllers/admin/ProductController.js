@@ -11,7 +11,11 @@ const EventProduct = require('../../models/EventProduct');
 const index = async(req, res) => {
     try {
         const products = await Product.find().populate([{path: 'brand_id'}, {path: 'type_id'}]).exec(); 
-        res.render('admin/product/index', { products: products, title: 'Quản lý sản phẩm' });
+        res.render('admin/product/index', { 
+            products: products, 
+            title: 'Quản lý sản phẩm',
+            message: req.flash('message'), 
+        });
     } catch (error) {
         console.error('Error retrieving products:', error);
         res.status(500).send('Internal Server Error');
@@ -62,6 +66,7 @@ const store =async(req, res) => {
                 product_id: createProduct._id,
             });
         };
+        req.flash('message', 'Thêm thành công.');
         res.redirect('/admin/product/');
     } catch (error) {
         console.log(error);
@@ -143,6 +148,7 @@ const update =async(req, res) => {
                 product_id: updatedProduct._id,
             });
         }
+        req.flash('message', 'Cập nhật thành công.');
         res.redirect('/admin/product/');
     } catch (error) {
         console.log(error);
@@ -178,6 +184,7 @@ const destroy = async(req, res) => {
         }
         await ImageProduct.deleteMany({ product_id: id });
         await EventProduct.deleteMany({ product_id: id });
+        req.flash('message', 'Xóa thành công.');
         res.redirect('/admin/product');
     } catch (e) {
         console.log(e);

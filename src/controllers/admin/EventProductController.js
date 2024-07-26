@@ -5,7 +5,7 @@ const Product = require('../../models/Product');
 const create = async(req,res) => {
     const events = await Event.find(); 
     const products = await Product.find(); 
-    res.render('admin/event_product/create', { products: products, events: events ,title: 'Add event product'});
+    res.render('admin/event_product/create', { products: products, events: events ,title: 'Thêm sự kiện sản phẩm'});
 }
 
 const store = async(req, res) => {
@@ -24,6 +24,7 @@ const store = async(req, res) => {
                 event_id: event_id,
             });
         };
+        req.flash('message', 'Thêm thành công.');
         res.redirect('/admin/event');
     } catch (e) {
         console.log(e);

@@ -3,7 +3,11 @@ const Attribute = require('../../models/Attribute');
 const index = async(req, res) => {
     try {
         const attributes = await Attribute.find(); 
-        res.render('admin/attribute/index', { attributes: attributes, title: 'Attribute manager' });
+        res.render('admin/attribute/index', { 
+            attributes: attributes, 
+            title: 'Quản lý thuộc tính',
+            message: req.flash('message'),
+        });
     } catch (error) {
         console.error('Error retrieving types:', error);
         res.status(500).send('Internal Server Error');
@@ -11,7 +15,7 @@ const index = async(req, res) => {
 }
 
 const create = (req,res) => {
-    res.render('admin/attribute/create', { title: 'Add Attribute'});
+    res.render('admin/attribute/create', { title: 'Thêm thuộc tính'});
 }
 
 const store = async(req, res) => {
@@ -33,6 +37,7 @@ const store = async(req, res) => {
             name: name,
             description: description
         });
+        req.flash('message', 'Thêm thành công.');
         res.redirect('/admin/attribute');
     } catch (e) {
         console.log(e);
@@ -43,7 +48,7 @@ const store = async(req, res) => {
 const edit = async(req,res) => {
     id = req.params.id;
     const attribute = await Attribute.findOne({ _id: id })
-    res.render('admin/attribute/edit', { title: 'Edit Attribute', attribute: attribute});
+    res.render('admin/attribute/edit', { title: 'Sửa thuộc tính', attribute: attribute});
 }
 
 const update = async(req, res) => {
@@ -57,6 +62,7 @@ const update = async(req, res) => {
             });
         }
         const updateAttribute = await Attribute.findByIdAndUpdate(id, { name, description }, { new: true });
+        req.flash('message', 'Cập nhật thành công.');
         res.redirect('/admin/attribute');
     } catch (e) {
         console.log(e);
@@ -74,6 +80,7 @@ const destroy = async(req, res) => {
                 message: 'Attribute not found.'
             });
         }
+        req.flash('message', 'Xóa thành công.');
         res.redirect('/admin/attribute');
     } catch (e) {
         console.log(e);

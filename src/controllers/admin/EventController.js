@@ -16,7 +16,11 @@ const index = async(req, res) => {
                 event.formatted_end_date = 'N/A'; // Handle missing dates
             }
         });
-        res.render('admin/event/index', { events: events, title: 'Event manager' });
+        res.render('admin/event/index', { 
+            events: events, 
+            title: 'Quản lí sự kiện',
+            message: req.flash('message'),
+         });
     } catch (error) {
         console.error('Error retrieving events:', error);
         res.status(500).send('Internal Server Error');
@@ -24,7 +28,7 @@ const index = async(req, res) => {
 }
 
 const create = (req,res) => {
-    res.render('admin/event/create', { title: 'Add event discount'});
+    res.render('admin/event/create', { title: 'Thêm sự kiện giảm giá' });
 }
 
 const store =async(req, res) => {
@@ -39,6 +43,7 @@ const store =async(req, res) => {
             start_date: start_date,
             end_date: end_date,
         });
+        req.flash('message', 'Thêm thành công.');
         res.redirect('/admin/event/');
     } catch (error) {
         console.log(error);
@@ -59,7 +64,7 @@ const edit = async(req,res) => {
     } else {
         event.formatted_end_date = 'N/A';
     }
-    res.render('admin/event/edit', { title: 'Edit event discount', event: event });
+    res.render('admin/event/edit', { title: 'Sửa sự kiện giảm giá', event: event });
 }
 
 const update = async(req, res) => {
@@ -74,6 +79,7 @@ const update = async(req, res) => {
             });
         }
         const updateEvent = await Event.findByIdAndUpdate(id, { title, discount, image, start_date, end_date, description }, { new: true });
+        req.flash('message', 'Cập nhật thành công.');
         res.redirect('/admin/event/');
     } catch (e) {
         console.log(e);
@@ -91,6 +97,7 @@ const destroy = async(req, res) => {
                 message: 'Event not found.'
             });
         }
+        req.flash('message', 'Xóa thành công.');
         res.redirect('/admin/event');
     } catch (e) {
         console.log(e);

@@ -5,15 +5,16 @@ const Product = require('../../models/Product');
 const index = async(req, res) => {
     const warehouses = await WareHouse.find().populate([{path: 'product_id'}]).exec();
     res.render('admin/warehouse/index', { 
-        title: 'Warehouse manager', 
-        warehouses: warehouses 
+        title: 'Quản lí kho', 
+        warehouses: warehouses,
+        message: req.flash('message'),
     });
 }
 
 const create = async(req,res) => {
     const products = await Product.find();
     res.render('admin/warehouse/create', {
-        title: 'Create Warehouse', 
+        title: 'Thêm sản phẩm trong kho', 
         products: products
     });
 }
@@ -38,6 +39,7 @@ const store = async(req, res) => {
             quantity: quantity,
             price: price,
         });
+        req.flash('message', 'Thêm thành công.');
         res.redirect('/admin/warehouse');
     } catch (error) {
         console.log(error);
@@ -68,6 +70,7 @@ const inport = async(req, res) => {
         const oldWareHouse = await WareHouse.findOne({ _id: warehouseId });
         const newQuantity = Number(oldWareHouse.quantity) + Number(quantity);
         const update = await WareHouse.findByIdAndUpdate(warehouseId, { quantity: newQuantity }, { new: true });
+        req.flash('message', 'Nhập kho thành công.');
         res.redirect('/admin/warehouse');
     } catch (error) {
         console.log(error);

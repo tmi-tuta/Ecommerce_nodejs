@@ -27,7 +27,11 @@ router.get('/register', RegisterController.create);
 router.post('/register', RegisterController.store);
 
 router.get('/login', (req, res) => {
-    res.render('admin/auth/login', { title: 'Login', layout: 'admin/layout/auth' });
+    res.render('admin/auth/login', { 
+        title: 'Đăng nhập quản trị', 
+        layout: 'admin/layout/auth',
+        message: req.flash('message'),
+    });
 });
 // router.post('/login', LoginController.login);
 router.post('/login', passport.authenticate('local', {

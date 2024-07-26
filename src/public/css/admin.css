@@ -142,3 +142,24 @@ border: 2px solid #0651ed;
     align-items: center;
     justify-content: center;
 }
+
+.admin-header {
+    background-color: rgb(88 133 154);
+    color: white;
+    padding: 10px;
+    line-height: 1;
+    height: fit-content;
+}
+
+.btn-primary {
+    background-color: rgb(88 133 154) !important;
+    border: none !important;
+}
+
+.btn-primary:hover {
+    background-color: rgb(127, 148, 158) !important;
+}
+
+h1 {
+    font-size: 2em !important;
+}

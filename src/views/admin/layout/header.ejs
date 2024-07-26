@@ -1,6 +1,6 @@
-<header class="bg-slate-200 h-24">
+<header class="admin-header">
     <div class="flex items-center justify-between header-block pt-2 px-2">
-        <i class="fa-solid fa-bars icon-bars" data-bs-toggle="offcanvas" data-bs-target="#menu-admin"></i>
+        <i class="fa-solid fa-bars icon-bars text-white" data-bs-toggle="offcanvas" data-bs-target="#menu-admin"></i>
         <div>
             <% if (userLogged) { %>
                 <div class="flex items-center gap-1"> <i class="fa-solid fa-user"></i> Tài khoản: <%= userLogged.name %></div>

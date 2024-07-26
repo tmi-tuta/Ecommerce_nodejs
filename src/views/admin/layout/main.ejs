@@ -19,13 +19,15 @@
     <link type="text/css" rel="stylesheet" href="/css/admin.css">
     <link type="text/css" href="/css/style.css" rel="stylesheet">
     <link type="text/css" href="/css/tailwind.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 
 <body>
-    <div class="container border-solid border-2 border-gray-300 px-0 min-h-screen">
+    <div class="border-solid border-2 border-gray-300 px-0 min-h-screen">
         <%- include('../../admin/layout/sidebar.ejs') %>
         <%- include('../../admin/layout/header.ejs') %>
-        <main>
+        <main class="container mt-3">
             <%- body %>
         </main>
     </div>
