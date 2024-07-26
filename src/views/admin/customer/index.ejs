@@ -1,4 +1,11 @@
-
+<% if (message && message.length > 0) { %>
+    <script>
+        var message = "<%= message  %>";
+        toastr.success(message, "Success", {
+            positionClass: 'toast-top-right',
+        });
+    </script>
+<% } %>
 <div class="container-table mx-2">
     <table class="table table-striped table-hover data-table" style="max-width: 1300px;">
         <thead style="background-color: #07497c; color: white;">
@@ -26,10 +33,18 @@
                     </td>
                     <td>
                         <div class="flex justify-center items-center gap-2">
-                            <a class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 
-                            font-medium rounded-md text-sm px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 
-                            dark:focus:ring-blue-800 h-10 flex items-center justify-center">Sửa</a>
-                            <a class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 
+                            <form action="/admin/customers/<%= user.id %>/updateStatus" method="POST">
+                                <% if (user.status == 1) { %>
+                                    <input type="hidden" name="status" value="0">
+                                    <button type="submit" class="btn btn-primary focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2.5 
+                                    text-center h-10 flex items-center justify-center">Khóa tài khoản</button>
+                                <% } else { %>
+                                    <input type="hidden" name="status" value="1">
+                                    <button type="submit" class="btn btn-primary focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2.5 
+                                    text-center h-10 flex items-center justify-center">Mở tài khoản</button>
+                                <% } %>
+                            </form>
+                            <a href="/admin/customers/<%= user.id %>/delete" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 
                             font-medium rounded-md text-sm px-4 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 
                             dark:focus:ring-red-900 h-10 flex items-center justify-center">Xóa</a>
                         </div>

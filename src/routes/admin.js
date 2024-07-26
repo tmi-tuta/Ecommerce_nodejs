@@ -42,7 +42,12 @@ router.post('/login', passport.authenticate('local', {
 router.get('/logout', ensureAuthenticatedAdmin, LoginController.logout);
 
 router.get('/staff', ensureAuthenticatedAdmin, StaffController.index);
+router.post('/staff/:id/updateStatus', ensureAuthenticatedAdmin, StaffController.updateStatus);
+router.get('/staff/:id/delete', ensureAuthenticatedAdmin, StaffController.destroy);
+
 router.get('/customers', ensureAuthenticatedAdmin, CustomerController.index);
+router.post('/customers/:id/updateStatus', ensureAuthenticatedAdmin, CustomerController.updateStatus);
+router.get('/customers/:id/delete', ensureAuthenticatedAdmin, StaffController.destroy);
 
 router.get('/role', ensureAuthenticatedAdmin, RoleController.index);
 router.get('/role/create', ensureAuthenticatedAdmin, RoleController.create);

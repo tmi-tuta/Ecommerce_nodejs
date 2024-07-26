@@ -5,7 +5,7 @@
 }
 
 .item-menu.active {
-    background-color: grey;
+    background-color: rgb(88 133 154);
     color: white;
 }
 
@@ -162,4 +162,9 @@ border: 2px solid #0651ed;
 
 h1 {
     font-size: 2em !important;
+}
+
+.header-sideber {
+    background-color: rgb(88 133 154);
+    color: white !important;
 }

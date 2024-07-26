@@ -3,30 +3,44 @@
         <div class="container">
             <div class="row">
                 <div class="col d-flex flex-row items-center">
-                    <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/phone.png" alt=""></div>+38 068 005 3570</div>
-                    <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/mail.png" alt=""></div><a href="https://colorlib.com/cdn-cgi/l/email-protection#234542505750424f465063444e424a4f0d404c4e"><span class="__cf_email__" data-cfemail="34525547404755585147745359555d581a575b59">[email&#160;protected]</span></a></div>
+                    <div class="top_bar_contact_item flex items-center">
+                        <div class="top_bar_icon">
+                            <img src="images/phone.png" alt="">
+                        </div>
+                        0368247622
+                    </div>
+                    <div class="top_bar_contact_item flex items-center">
+                        <div class="top_bar_icon">
+                            <img src="images/mail.png" alt="">
+                        </div>
+                        <a href="https://colorlib.com/cdn-cgi/l/email-protection#234542505750424f465063444e424a4f0d404c4e">
+                            <span class="text-white" data-cfemail="34525547404755585147745359555d581a575b59">
+                                techbeenshop@gmail.com
+                            </span>
+                        </a>
+                    </div>
                     <div class="top_bar_content ml-auto">
                         <div class="flex items-center justify-start gap-2">
                             <div class="user_icon">
                               <img src="images/user.svg" alt="">
                             </div>
                             <% if (userLogged) { %>
-                                <span> Đã đăng nhập: <%= userLogged.name %></span>
-                                <span>|</span>
+                                <span class="text-white"> Đã đăng nhập: <%= userLogged.name %></span>
+                                <span class="text-white">|</span>
                                 <div>
-                                    <a href="/order/index">Đơn hàng</a>
+                                    <a class="text-white" href="/order/index">Đơn hàng</a>
                                 </div>
                                 <span>|</span>
                                 <div>
-                                    <a href="/logout">đăng xuất</a>
+                                    <a class="text-white" href="/logout">đăng xuất</a>
                                 </div>
                             <% } else { %>
                                 <div>
-                                    <a href="/register">Đăng ký</a>
+                                    <a class="text-white" href="/register">Đăng ký</a>
                                 </div>
                                 <span>|</span>
                                 <div>
-                                    <a href="/login">Đăng nhập</a>
+                                    <a class="text-white" href="/login">Đăng nhập</a>
                                   </div>
                             <% } %>
                         </div>
