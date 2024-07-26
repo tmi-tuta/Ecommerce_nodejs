@@ -25,6 +25,7 @@ const login = async(req, res, next) => {
                 return res.redirect('/admin/');
             });
         })
+        req.flash('message', 'Đăng nhập thành công, xin chào admin.');
         res.redirect('/admin');
     } catch (error) {
         console.log(error.message);
@@ -38,6 +39,7 @@ const logout = (req, res) => {
             if (err) {
                 return next(err);
             }
+            req.flash('message', 'Đăng xuất thành công.');
             res.redirect('/admin/login');
         });
     } else {

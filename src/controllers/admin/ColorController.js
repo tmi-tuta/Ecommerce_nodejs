@@ -3,7 +3,11 @@ const Color = require('../../models/Color');
 const index = async(req, res) => {
     try {
         const colors = await Color.find(); 
-        res.render('admin/color/index', { colors: colors, title: 'Color manager' });
+        res.render('admin/color/index', { 
+            colors: colors, 
+            title: 'Color manager',
+            message: req.flash('message'),
+         });
     } catch (error) {
         console.error('Error retrieving colors:', error);
         res.status(500).send('Internal Server Error');
@@ -28,6 +32,7 @@ const store = async(req, res) => {
             color: color,
             description: description
         });
+        req.flash('message', 'Thêm thành công.');
         res.redirect('/admin/color');
     } catch (e) {
         console.log(e);
@@ -52,6 +57,7 @@ const update = async(req, res) => {
             });
         }
         const updateColor = await Color.findByIdAndUpdate(id, { name, color, description }, { new: true });
+        req.flash('message', 'Cập nhật thành công.');
         res.redirect('/admin/color');
     } catch (e) {
         console.log(e);
@@ -69,6 +75,7 @@ const destroy = async(req, res) => {
                 message: 'Color not found.'
             });
         }
+        req.flash('message', 'Xóa thành công.');
         res.redirect('/admin/color');
     } catch (e) {
         console.log(e);

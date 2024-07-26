@@ -5,6 +5,7 @@ const index = async(req, res) => {
     res.render('admin/order/index', {
         title: 'Đơn hàng', 
         orders: orders,
+        message: req.flash('message'),
     });
 }
 
@@ -13,6 +14,7 @@ const updateStatus = async(req, res) => {
         const { status } = req.body;
         const id = req.params.id;
         const statusOrder = await Order.findByIdAndUpdate(id, { status: status }, { new: true });
+        req.flash('message', 'Cập nhật đơn hàng thành công.');
         res.redirect('back');
     } catch (e) {
         console.log(e);

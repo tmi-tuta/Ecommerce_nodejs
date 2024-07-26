@@ -1,5 +1,13 @@
 <div class="container mt-5">
-    <h1>Thống kê bán hàng</h1>
+    <% if (message && message.length > 0) { %>
+        <script>
+            var message = "<%= message  %>";
+            toastr.success(message, "Success", {
+                positionClass: 'toast-top-right',
+            });
+        </script>
+    <% } %>
+    <h1 class="text-center">Thống kê bán hàng</h1>
     <form id="statistics-form">
         <label for="period">Giai đoạn:</label>
         <select id="period" name="period" class="form-select" required>

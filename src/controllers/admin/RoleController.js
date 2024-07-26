@@ -3,7 +3,11 @@ const Role = require('../../models/Role');
 const index = async(req, res) => {
     try {
         const roles = await Role.find(); 
-        res.render('admin/role/index', { roles: roles, title: 'Staff manager' });
+        res.render('admin/role/index', { 
+            roles: roles, 
+            title: 'Staff manager',
+            message: req.flash('message'),
+        });
     } catch (error) {
         console.error('Error retrieving roles:', error);
         res.status(500).send('Internal Server Error');
@@ -26,7 +30,7 @@ const store = async(req, res) => {
         const createRole = await Role.create({
             name: name,
         });
-        // req.flash('message', 'Add new role success!');
+        req.flash('message', 'Thêm thành công.');
         res.redirect('/admin/role');
     } catch (e) {
 
@@ -50,6 +54,7 @@ const update = async(req, res) => {
             });
         }
         const role = await Role.findByIdAndUpdate(id, { name }, { new: true });
+        req.flash('message', 'Cập nhật thành công.');
         res.redirect('/admin/role');
     } catch (e) {
         console.log(e);
@@ -67,6 +72,7 @@ const destroy = async(req, res) => {
                 message: 'Role not found.'
             });
         }
+        req.flash('message', 'Xóa thành công.');
         res.redirect('/admin/role');
     } catch (e) {
         console.log(e);

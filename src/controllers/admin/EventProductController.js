@@ -24,6 +24,7 @@ const store = async(req, res) => {
                 event_id: event_id,
             });
         };
+        req.flash('message', 'Thêm thành công.');
         res.redirect('/admin/event');
     } catch (e) {
         console.log(e);

@@ -1,7 +1,10 @@
 const UserService = require('../../../services/UserService')
 
 const create = async(req, res) => {
-    res.render('admin/auth/register', { title: 'Đăng ký', layout: 'admin/layout/auth' });
+    res.render('admin/auth/register', { 
+        title: 'Đăng ký', 
+        layout: 'admin/layout/auth',
+    });
 };
 
 const store = async(req, res) => {
@@ -26,6 +29,7 @@ const store = async(req, res) => {
             });
         }
         const services = await UserService.createUser(req.body);
+        req.flash('message', 'Đăng kí tài khoản thành công.');
         res.redirect('/admin/login');
     } catch (e) {
         console.log(e);

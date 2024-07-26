@@ -3,7 +3,11 @@ const Type = require('../../models/Type');
 const index = async(req, res) => {
     try {
         const types = await Type.find(); 
-        res.render('admin/type/index', { types: types, title: 'Type manager' });
+        res.render('admin/type/index', { 
+            types: types, 
+            title: 'Quản lý loại',
+            message: req.flash('message'), 
+        });
     } catch (error) {
         console.error('Error retrieving types:', error);
         res.status(500).send('Internal Server Error');
@@ -26,6 +30,7 @@ const store = async(req, res) => {
         const createType = await Type.create({
             name: name,
         });
+        req.flash('message', 'Thêm thành công.');
         res.redirect('/admin/type');
     } catch (e) {
         log.error('add type error: '+ e);
@@ -49,6 +54,7 @@ const update = async(req, res) => {
             });
         }
         const type = await Type.findByIdAndUpdate(id, { name }, { new: true });
+        req.flash('message', 'Cập nhật thành công.');
         res.redirect('/admin/type');
     } catch (e) {
         console.log(e);
@@ -66,6 +72,7 @@ const destroy = async(req, res) => {
                 message: 'Type not found.'
             });
         }
+        req.flash('message', 'Xóa thành công.');
         res.redirect('/admin/type');
     } catch (e) {
         console.log(e);
