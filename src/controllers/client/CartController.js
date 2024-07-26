@@ -109,7 +109,7 @@ const postAddOrder = async (req, res, next) => {
       }
 
       await order.save();
-      req.flash("success", "Thanh toán thành công!");
+      req.flash("message", "Bạn đã đặt hàng thành công!");
       req.session.cart = null;
       req.user.cart = {};
       await req.user.save();

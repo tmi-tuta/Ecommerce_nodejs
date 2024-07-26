@@ -84,12 +84,12 @@ $('#reviewForm').submit(function(event) {
       contentType: 'application/json',
       data: JSON.stringify(formData),
       success: function(response) {
-          alert('Đánh giá của bạn đã được gửi thành công!');
+          toastr.success('Đánh giá của bạn đã được gửi thành công!');
           $('#reviewForm')[0].reset(); 
       },
       error: function(xhr, status, error) {
           console.error('Error:', error);
-          alert('Đã xảy ra lỗi. Vui lòng thử lại.');
+          toastr.error('Đã xảy ra lỗi. Vui lòng thử lại.');
       }
   });
 });

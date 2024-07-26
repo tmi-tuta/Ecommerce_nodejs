@@ -45,7 +45,9 @@ const index = async(req, res) => {
         types: types,
         products: filteredProducts,
         groupedByEvent: groupedByEvent,
-        layout: 'client/layout/main' });
+        message: req.flash('message'),
+        layout: 'client/layout/main', 
+      });
 }
 
 module.exports = {

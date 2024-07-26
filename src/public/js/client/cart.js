@@ -4,8 +4,10 @@ $(".add-cart").click(function(e) {
       url: "/cart/add-to-cart/" + id,
       method: "GET",
       success: data => {
-        location.reload();
-        alert('add product to cart success');
+        toastr.success('Thêm vào giỏ hàng thành công!');
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
       }
     });
 });
