@@ -5,7 +5,7 @@ const index = async(req, res) => {
         const roles = await Role.find(); 
         res.render('admin/role/index', { 
             roles: roles, 
-            title: 'Staff manager',
+            title: 'Quản lí quyền',
             message: req.flash('message'),
         });
     } catch (error) {
@@ -15,7 +15,7 @@ const index = async(req, res) => {
 }
 
 const create = (req,res) => {
-    res.render('admin/role/create', { title: 'Add Role'});
+    res.render('admin/role/create', { title: 'Thêm quyền'});
 }
 
 const store = async(req, res) => {
@@ -40,7 +40,7 @@ const store = async(req, res) => {
 const edit = async(req,res) => {
     id = req.params.id;
     const role = await Role.findOne({ _id: id })
-    res.render('admin/role/edit', { title: 'Edit Role', role: role});
+    res.render('admin/role/edit', { title: 'Sửa quyền', role: role});
 }
 
 const update = async(req, res) => {

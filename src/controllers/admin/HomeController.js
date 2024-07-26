@@ -2,7 +2,7 @@ const index = (req, res) => {
     if (req.isAuthenticated()) {
         const userLogged = req.user;        
         res.render('admin/home/index', {
-            title: 'Home', 
+            title: 'Trang quản lí', 
             userLogged: userLogged,
             message: req.flash('message'),
         });

@@ -5,7 +5,7 @@ const Product = require('../../models/Product');
 const index = async(req, res) => {
     const warehouses = await WareHouse.find().populate([{path: 'product_id'}]).exec();
     res.render('admin/warehouse/index', { 
-        title: 'Warehouse manager', 
+        title: 'Quản lí kho', 
         warehouses: warehouses,
         message: req.flash('message'),
     });
@@ -14,7 +14,7 @@ const index = async(req, res) => {
 const create = async(req,res) => {
     const products = await Product.find();
     res.render('admin/warehouse/create', {
-        title: 'Create Warehouse', 
+        title: 'Thêm sản phẩm trong kho', 
         products: products
     });
 }
@@ -51,7 +51,7 @@ const show = async(req,res) => {
     id = req.params.id;
     const wareHouseins = await WareHouseIn.find({ warehouse_id : id }).populate(['user_id', 'warehouse_id']).exec(); 
     res.render('admin/warehouse/show', {
-        title: 'Warehouse detail', 
+        title: 'Chi tiết kho', 
         wareHouseins: wareHouseins
     });
 }

@@ -15,7 +15,7 @@ const index = async(req, res) => {
 }
 
 const create = (req,res) => {
-    res.render('admin/attribute/create', { title: 'Add Attribute'});
+    res.render('admin/attribute/create', { title: 'Thêm thuộc tính'});
 }
 
 const store = async(req, res) => {
@@ -48,7 +48,7 @@ const store = async(req, res) => {
 const edit = async(req,res) => {
     id = req.params.id;
     const attribute = await Attribute.findOne({ _id: id })
-    res.render('admin/attribute/edit', { title: 'Edit Attribute', attribute: attribute});
+    res.render('admin/attribute/edit', { title: 'Sửa thuộc tính', attribute: attribute});
 }
 
 const update = async(req, res) => {

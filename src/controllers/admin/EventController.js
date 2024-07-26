@@ -18,7 +18,7 @@ const index = async(req, res) => {
         });
         res.render('admin/event/index', { 
             events: events, 
-            title: 'Event manager',
+            title: 'Quản lí sự kiện',
             message: req.flash('message'),
          });
     } catch (error) {
@@ -28,7 +28,7 @@ const index = async(req, res) => {
 }
 
 const create = (req,res) => {
-    res.render('admin/event/create', { title: 'Add event discount'});
+    res.render('admin/event/create', { title: 'Thêm sự kiện giảm giá' });
 }
 
 const store =async(req, res) => {
@@ -64,7 +64,7 @@ const edit = async(req,res) => {
     } else {
         event.formatted_end_date = 'N/A';
     }
-    res.render('admin/event/edit', { title: 'Edit event discount', event: event });
+    res.render('admin/event/edit', { title: 'Sửa sự kiện giảm giá', event: event });
 }
 
 const update = async(req, res) => {

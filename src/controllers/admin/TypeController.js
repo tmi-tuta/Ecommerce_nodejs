@@ -15,7 +15,7 @@ const index = async(req, res) => {
 }
 
 const create = (req,res) => {
-    res.render('admin/type/create', { title: 'Add Type'});
+    res.render('admin/type/create', { title: 'Thêm loại'});
 }
 
 const store = async(req, res) => {
@@ -40,7 +40,7 @@ const store = async(req, res) => {
 const edit = async(req,res) => {
     id = req.params.id;
     const type = await Type.findOne({ _id: id })
-    res.render('admin/type/edit', { title: 'Edit Type', type: type});
+    res.render('admin/type/edit', { title: 'Sửa loại', type: type});
 }
 
 const update = async(req, res) => {

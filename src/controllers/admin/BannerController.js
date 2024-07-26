@@ -15,7 +15,7 @@ const index = async(req, res) => {
 }
 
 const create = (req,res) => {
-    res.render('admin/banner/create', { title: 'Add new banner'});
+    res.render('admin/banner/create', { title: 'Thêm mới banner'});
 }
 
 const store =async(req, res) => {
@@ -43,7 +43,7 @@ const store =async(req, res) => {
 const edit = async(req,res) => {
     id = req.params.id;
     const banner = await Banner.findOne({ _id: id })
-    res.render('admin/banner/edit', { title: 'Edit banner', banner: banner });
+    res.render('admin/banner/edit', { title: 'Chỉnh sửa banner', banner: banner });
 }
 
 const update = async(req, res) => {
