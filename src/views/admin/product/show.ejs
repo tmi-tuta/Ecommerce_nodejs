@@ -32,7 +32,7 @@
         <div>
           <strong>Màu sắc:</strong>
           <% colors.forEach(color => { %>
-            <input type="color" value="<%= color.color_id.color %>" disabled>
+            <input type="color" value="<%= color.color_id ? color.color_id.color : '' %>" disabled>
           <% }) %>
         </div>
       </div>

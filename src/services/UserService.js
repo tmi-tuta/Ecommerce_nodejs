@@ -33,11 +33,12 @@ const createUser = (newUser) => {
 const loginService = async(email, password) => {
     const user = await User.findOne({ email });
     if (!user) {
-        throw new Error('Invalid email or password');
+        throw new Error('Email hoặc mật khẩu không hợp lệ.');
     }
+    console.log(user);
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-        throw new Error('Invalid email or password');
+        throw new Error('Email hoặc mật khẩu không hợp lệ.');
     }
     const token = jwt.sign({ userId: user._id }, 'secretKey', { expiresIn: '1h' });
     return { user, token };

@@ -2,7 +2,7 @@ const User = require('../../models/User');
 
 const index = async (req, res) => {
     try {
-        const users = await User.find({ user_role: { $ne: 0 } }); 
+        const users = await User.find({ user_role: { $ne: 3 } }); 
         res.render('admin/staff/index', { users: users, 
             title: 'Quản lý nhân viên',
             message: req.flash('message'), 

@@ -7,6 +7,7 @@ const ImageProduct = require('../../models/ImageProduct');
 const ProductAttribute = require('../../models/ProductAttribute');
 const ProductColor = require('../../models/ProductColor');
 const EventProduct = require('../../models/EventProduct');
+const mongoose = require('mongoose');
 
 const index = async(req, res) => {
     try {
@@ -96,66 +97,73 @@ const edit = async(req,res) => {
     });
 }
 
-const update =async(req, res) => {
+const update = async (req, res) => {
     try {
         const { name, price, description, brand_id, type_id } = req.body;
+        const productId = req.params.id;
         const attributeIds = req.body.attribute_id || [];
         const colorIds = req.body.color_id || [];
-    
-        // Xử lý hình ảnh chính
-        const image = req.files['image'] ? req.files['image'][0].path.replace('public', '') : '';
-    
-        // Xử lý hình ảnh phụ
+        const validBrandId = mongoose.Types.ObjectId.isValid(brand_id) ? brand_id : null;
+        const validTypeId = mongoose.Types.ObjectId.isValid(type_id) ? type_id : null;
+        const currentProduct = await Product.findById(productId);
+        if (!currentProduct) {
+            console.log('Error: Sản phẩm không có.');
+            return res.status(404).redirect('/admin/product/');
+        }
+        const image = req.files['image'] ? req.files['image'][0].path.replace('public', '') : currentProduct.image.replace('src/', '');
         const sub_images = req.files['sub_image'] ? req.files['sub_image'].map(file => file.path.replace('public', '')) : [];
-    
-        // Cập nhật sản phẩm
         const updatedProduct = await Product.findByIdAndUpdate(
-            req.params.productId,  // ID sản phẩm từ tham số URL
+            productId,  // Product ID from URL params
             {
                 name: name,
                 price: price,
                 description: description,
-                brand_id: brand_id,
-                type_id: type_id,
+                brand_id: validBrandId,
+                type_id: validTypeId,
                 image: image,
             },
-            { new: true }  // Trả về đối tượng đã được cập nhật
+            { new: true }  // Return the updated object
         );
-    
-        if (!updatedProduct) {
-            return res.status(404).redirect('/admin/product/');
-        }
-        // Xóa hình ảnh phụ cũ
+        // Delete old sub images
         await ImageProduct.deleteMany({ product_id: updatedProduct._id });
-        // Lưu hình ảnh phụ mới
+
+        // Save new sub images
         for (const sub_image of sub_images) {
             await ImageProduct.create({
                 product_id: updatedProduct._id,
                 image: sub_image,
             });
         }
+
+        // Delete old product attributes
         await ProductAttribute.deleteMany({ product_id: updatedProduct._id });
+
+        // Save new product attributes
         for (const attributeId of attributeIds) {
             await ProductAttribute.create({
                 attribute_id: attributeId,
                 product_id: updatedProduct._id,
             });
         }
+
+        // Delete old product colors
         await ProductColor.deleteMany({ product_id: updatedProduct._id });
+
+        // Save new product colors
         for (const colorId of colorIds) {
             await ProductColor.create({
                 color_id: colorId,
                 product_id: updatedProduct._id,
             });
         }
+
         req.flash('message', 'Cập nhật thành công.');
         res.redirect('/admin/product/');
     } catch (error) {
         console.log(error);
         res.redirect('/admin/product/');
     }
-    
-}
+};
 
 const show = async(req,res) => {
     id = req.params.id;
